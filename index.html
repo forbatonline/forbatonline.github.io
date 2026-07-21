@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORBAT BATERIAS</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .header { background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); padding: 18px 0; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid #3b82f6; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon { width: 45px; height: 45px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: #fff; }
+    .logo-text { font-size: 20px; font-weight: 800; color: #fff; }
+    .logo-text span { color: #3b82f6; }
+    .nav-btn { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; text-decoration: none; padding: 10px 24px; border-radius: 50px; font-weight: 600; font-size: 14px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px; }
+    .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(37,211,102,0.4); }
+    .hero { margin-top: 81px; background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 50%, #1e3a5f 100%); padding: 90px 0 70px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.4); color: #60a5fa; padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 13px; margin-bottom: 25px; }
+    .hero h1 { font-size: 44px; font-weight: 800; line-height: 1.1; margin-bottom: 18px; background: linear-gradient(135deg, #fff 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 17px; color: #94a3b8; max-width: 600px; margin: 0 auto 30px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; text-decoration: none; padding: 16px 36px; border-radius: 50px; font-weight: 700; font-size: 15px; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(59,130,246,0.3); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(59,130,246,0.5); }
+    .btn-secondary { background: transparent; color: #60a5fa; text-decoration: none; padding: 16px 36px; border-radius: 50px; font-weight: 700; font-size: 15px; border: 2px solid #3b82f6; transition: all 0.3s ease; }
+    .btn-secondary:hover { background: rgba(59,130,246,0.1); transform: translateY(-3px); }
+    .section { padding: 60px 0; }
+    .section-header { text-align: center; margin-bottom: 45px; }
+    .section-header h2 { font-size: 30px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .section-header h2 span { color: #3b82f6; }
+    .section-header p { color: #94a3b8; font-size: 15px; max-width: 500px; margin: 0 auto; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
+    .product-card { background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid #1e3a5f; border-radius: 16px; overflow: hidden; transition: all 0.4s ease; position: relative; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-6px); border-color: #3b82f6; box-shadow: 0 16px 35px rgba(59,130,246,0.12); }
+    .product-img { width: 100%; height: 190px; object-fit: cover; background: linear-gradient(135deg, #1e3a5f, #0f172a); display: block; }
+    .product-info { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+    .product-tag { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; align-self: flex-start; }
+    .tag-moto { background: #1e3a5f; color: #60a5fa; }
+    .tag-carro { background: #14532d; color: #4ade80; }
+    .tag-bike { background: #7c2d12; color: #fb923c; }
+    .tag-scooter { background: #581c87; color: #c084fc; }
+    .tag-carrinho { background: #be185d; color: #f9a8d4; }
+    .tag-estacionaria { background: #854d0e; color: #fde047; }
+    .product-name { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .product-specs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .spec { background: rgba(59,130,246,0.1); color: #93c5fd; padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 600; }
+    .product-desc { font-size: 12px; color: #94a3b8; line-height: 1.5; margin-bottom: 10px; flex: 1; }
+    .product-price { font-size: 20px; font-weight: 800; color: #4ade80; margin-bottom: 8px; }
+    .product-price .old-price { font-size: 13px; color: #64748b; text-decoration: line-through; font-weight: 500; margin-left: 6px; }
+    .product-vehicle { font-size: 12px; color: #64748b; padding-top: 10px; border-top: 1px solid #1e3a5f; line-height: 1.5; margin-bottom: 12px; }
+    .product-vehicle strong { color: #60a5fa; }
+    .product-vehicle .models { color: #94a3b8; font-size: 11px; margin-top: 4px; display: block; }
+    .whatsapp-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.3s ease; margin-top: auto; }
+    .whatsapp-btn:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(37,211,102,0.4); }
+    .whatsapp-btn svg { width: 18px; height: 18px; fill: #fff; }
+    .features { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .feature-box { background: linear-gradient(135deg, #1e3a5f20, #0f172a); border: 1px solid #1e3a5f; border-radius: 14px; padding: 28px 20px; text-align: center; transition: all 0.3s ease; }
+    .feature-box:hover { border-color: #3b82f6; transform: translateY(-4px); }
+    .feature-icon { font-size: 32px; margin-bottom: 12px; }
+    .feature-box h3 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .feature-box p { font-size: 12px; color: #94a3b8; line-height: 1.6; }
+    .cta-section { background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); text-align: center; padding: 70px 0; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%); border-radius: 50%; }
+    .cta-section h2 { font-size: 34px; font-weight: 800; color: #fff; margin-bottom: 14px; position: relative; z-index: 1; }
+    .cta-section h2 span { color: #3b82f6; }
+    .cta-section p { color: #94a3b8; font-size: 15px; max-width: 500px; margin: 0 auto 28px; position: relative; z-index: 1; }
+    .footer { background: #020617; padding: 35px 0; text-align: center; border-top: 1px solid #1e3a5f; }
+    .footer p { color: #475569; font-size: 13px; line-height: 1.8; }
+    .footer strong { color: #94a3b8; }
+    .floating-whatsapp { position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, #25D366, #128C7E); color: #ffffff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5); z-index: 9999; transition: all 0.3s ease; animation: pulse-float 2s infinite; }
+    .floating-whatsapp svg { width: 32px; height: 32px; fill: #ffffff; }
+    .floating-whatsapp:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 8px 35px rgba(37, 211, 102, 0.7); }
+    @keyframes pulse-float { 0%, 100% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5); } 50% { box-shadow: 0 6px 35px rgba(37, 211, 102, 0.8); } }
+    .floating-whatsapp::after { content: 'Fale Conosco'; position: absolute; right: 70px; background: #1e293b; color: #25D366; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; white-space: nowrap; opacity: 0; transform: translateX(10px); transition: all 0.3s ease; pointer-events: none; border: 1px solid #25D36640; }
+    .floating-whatsapp:hover::after { opacity: 1; transform: translateX(0); }
+    @media (max-width: 768px) { .hero h1 { font-size: 30px; } .hero p { font-size: 15px; } .section-header h2 { font-size: 24px; } .cta-section h2 { font-size: 26px; } .nav-btn span { display: none; } .nav-btn { padding: 10px 16px; } .products-grid { grid-template-columns: 1fr; } .floating-whatsapp { width: 55px; height: 55px; } .floating-whatsapp svg { width: 28px; height: 28px; } .floating-whatsapp::after { display: none; } }
+  </style>
+<base target="_blank">
+<base target="_blank">
+</head>
+<body id="inicio">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon">⚡</div>
+          <div class="logo-text">FOR<span>BAT</span></div>
+        </div>
+        <a href="#inicio" class="nav-btn" target="_blank">
+          💬 <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">🔋 Especialistas em Energia</div>
+      <h1>Baterias para Todo Tipo de Veículo</h1>
+      <p>Carros, motos, bikes, scooters, carrinhos de criança e mais. Encontre a bateria ideal com preço justo e garantia de qualidade.</p>
+      <div class="hero-btns">
+        <a href="#carrinhos" class="btn-primary">🚗 Carrinhos</a>
+        <a href="#motos" class="btn-secondary">🏍️ Motos</a>
+        <a href="#carros" class="btn-secondary">🚙 Carros</a>
+        <a href="#eletricos" class="btn-secondary">⚡ Elétricos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARRINHOS DE CRIANÇA -->
+  <section class="section" id="carrinhos">
+    <div class="container">
+      <div class="section-header">
+        <h2>Baterias para <span>Carrinhos de Criança</span></h2>
+        <p>Diversão garantida com segurança e durabilidade para os pequenos.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/http2.mlstatic.com/7baa1542e95144d14acc212db3116e9644430ca0.webp" alt="FORBAT Kids 6V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carrinho">Carrinho Infantil</span>
+            <h3 class="product-name">FORBAT Kids 6V</h3>
+            <div class="product-specs"><span class="spec">6V</span><span class="spec">12Ah</span><span class="spec">Chumbo-Ácido</span><span class="spec">Selada</span></div>
+            <p class="product-desc">Bateria selada de alta performance para carrinhos elétricos infantis. Segura, sem manutenção e com longa duração.</p>
+            <div class="product-price">R$ 89,90 <span class="old-price">R$ 119,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Carrinhos elétricos 6V
+              <span class="models">Modelos: Bandeirante Jeep, Homeplay, Xalingo, Brinquedos Bandeirantes, Peg-Pérego 6V</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/cdn.awsli.com.br/ec78242f142d87a094297bb3c2edac497ca7daa9.jpg" alt="FORBAT Kids Mini 6V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carrinho">Carrinho Infantil</span>
+            <h3 class="product-name">FORBAT Kids Mini 6V</h3>
+            <div class="product-specs"><span class="spec">6V</span><span class="spec">7.2Ah</span><span class="spec">Chumbo-Ácido</span><span class="spec">Plug Universal</span></div>
+            <p class="product-desc">Bateria compacta com plug universal para carrinhos menores. Fácil instalação e recarga rápida.</p>
+            <div class="product-price">R$ 59,90 <span class="old-price">R$ 79,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Carrinhos elétricos 6V compactos
+              <span class="models">Modelos: Jeep Nevada, Moto Ducati Baby, Carrinhos Fisher-Price 6V, Mini veículos 6V</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/http2.mlstatic.com/7baa1542e95144d14acc212db3116e9644430ca0.webp" alt="FORBAT Kids 12V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carrinho">Carrinho Infantil</span>
+            <h3 class="product-name">FORBAT Kids 12V</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">7Ah</span><span class="spec">Chumbo-Ácido</span><span class="spec">Selada</span></div>
+            <p class="product-desc">Bateria 12V para carrinhos maiores e mais potentes. Mais velocidade e autonomia para a diversão das crianças.</p>
+            <div class="product-price">R$ 109,90 <span class="old-price">R$ 149,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Carrinhos elétricos 12V
+              <span class="models">Modelos: Bandeirante Jeep 12V, Peg-Pérego 12V, Xalingo 12V, Carrinhos 2 lugares 12V</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTOS CONVENCIONAIS -->
+  <section class="section" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);" id="motos">
+    <div class="container">
+      <div class="section-header">
+        <h2>Baterias para <span>Motos Convencionais</span></h2>
+        <p>Partida confiável para todas as cilindradas e modelos.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/image.made-in-china.com/571c27ba49c9d633756c17b88ad8e884052e70b6.jpg" alt="FORBAT Moto Start 12V 7Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-moto">Moto 125-150cc</span>
+            <h3 class="product-name">FORBAT Moto Start 12V 7Ah</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">7Ah</span><span class="spec">MF Selada</span><span class="spec">CCA 90A</span></div>
+            <p class="product-desc">Bateria selada maintenance-free para motos de pequena e média cilindrada. Partida rápida mesmo em dias frios.</p>
+            <div class="product-price">R$ 129,90 <span class="old-price">R$ 169,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Motos 125cc a 150cc
+              <span class="models">Modelos: Honda CG 125/150/160, Yamaha YBR 125/150, Suzuki Yes 125, Honda Biz 125, Honda Pop 110</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/shop-ps.pogliani.com/6d56bbd769b3ed1be35c594c97a0f260d83cd821.jpg" alt="FORBAT Moto Pro YTX12-BS" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-moto">Moto 250-500cc</span>
+            <h3 class="product-name">FORBAT Moto Pro YTX12-BS</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">10.5Ah</span><span class="spec">MF Selada</span><span class="spec">CCA 180A</span></div>
+            <p class="product-desc">Bateria de alta performance para motos médias e grandes. Tecnologia MF com excelente capacidade de partida.</p>
+            <div class="product-price">R$ 249,90 <span class="old-price">R$ 329,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Motos 250cc a 500cc
+              <span class="models">Modelos: Honda CB 250/300/500, Yamaha Fazer 250, Kawasaki Ninja 300, Suzuki GSX 250, BMW G 310</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/lubricantes-online.com/47fedf06d72c3cf0fa2c149d02d12d65dbdac59e.jpg" alt="FORBAT Moto Heavy YB12A-A" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-moto">Moto 600cc+ / Custom</span>
+            <h3 class="product-name">FORBAT Moto Heavy YB12A-A</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">12Ah</span><span class="spec">Convencional</span><span class="spec">CCA 150A</span></div>
+            <p class="product-desc">Bateria convencional de alta capacidade para motos grandes, customs e touring. Potência de sobra para partidas exigentes.</p>
+            <div class="product-price">R$ 189,90 <span class="old-price">R$ 249,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Motos 600cc+ e Custom
+              <span class="models">Modelos: Harley-Davidson Sportster, Honda Shadow 750, Yamaha Virago 535, Suzuki Intruder 800, Kawasaki Vulcan 900</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/shop-ps.pogliani.com/6d56bbd769b3ed1be35c594c97a0f260d83cd821.jpg" alt="FORBAT Moto Lite 12V 5Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-moto">Moto 50-100cc</span>
+            <h3 class="product-name">FORBAT Moto Lite 12V 5Ah</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">5Ah</span><span class="spec">MF Selada</span><span class="spec">Compacta</span></div>
+            <p class="product-desc">Bateria compacta e leve para motos de baixa cilindrada e scooters. Ideal para uso urbano diário.</p>
+            <div class="product-price">R$ 89,90 <span class="old-price">R$ 119,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Motos 50cc a 100cc
+              <span class="models">Modelos: Honda Dream 100, Yamaha Neo 115, Suzuki Burgman 125, Scooters 50-125cc, Honda Lead 110</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARROS CONVENCIONAIS -->
+  <section class="section" id="carros">
+    <div class="container">
+      <div class="section-header">
+        <h2>Baterias para <span>Carros Convencionais</span></h2>
+        <p>Qualidade e durabilidade para todos os tipos de veículos a combustão.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/images.tcdn.com.br/aa7e39d31cfc125c6b049b2c173f16c7b343c374.jpg" alt="FORBAT Auto 45Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carro">Carro Compacto</span>
+            <h3 class="product-name">FORBAT Auto 45Ah</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">45Ah</span><span class="spec">CCA 330A</span><span class="spec">Selada</span></div>
+            <p class="product-desc">Bateria automotiva selada para carros compactos e populares. Excelente custo-benefício e partida confiável.</p>
+            <div class="product-price">R$ 329,90 <span class="old-price">R$ 429,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Carros compactos e populares
+              <span class="models">Modelos: Fiat Uno, Fiat Mobi, VW Gol, VW Up, Renault Kwid, Chevrolet Onix, Hyundai HB20, Ford Ka</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/static.wixstatic.com/fe0454d3132e770fe2868ad8b0a1257a0a1f8136.jpg" alt="FORBAT Auto 60Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carro">Carro Médio / SUV</span>
+            <h3 class="product-name">FORBAT Auto 60Ah</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">60Ah</span><span class="spec">CCA 480A</span><span class="spec">Selada</span></div>
+            <p class="product-desc">Bateria de média capacidade para carros médios, SUVs compactos e veículos com acessórios elétricos.</p>
+            <div class="product-price">R$ 429,90 <span class="old-price">R$ 549,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Carros médios e SUVs compactos
+              <span class="models">Modelos: Honda Civic, Toyota Corolla, VW Polo, Chevrolet Cruze, Hyundai Creta, Jeep Renegade, Honda HR-V</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/http2.mlstatic.com/c9a53eadc4793fb1507af091d493ef57539969c6.webp" alt="FORBAT Auto 70Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carro">SUV / Picape / Van</span>
+            <h3 class="product-name">FORBAT Auto 70Ah</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">70Ah</span><span class="spec">CCA 540A</span><span class="spec">Premium</span></div>
+            <p class="product-desc">Bateria premium de alta capacidade para SUVs, picapes, vans e veículos com alta demanda energética.</p>
+            <div class="product-price">R$ 529,90 <span class="old-price">R$ 679,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> SUVs, picapes, vans e utilitários
+              <span class="models">Modelos: Toyota Hilux, VW Amarok, Ford Ranger, Chevrolet S10, Mitsubishi L200, Jeep Compass, Toyota SW4, Hyundai Tucson</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/baterias.com/cf95a9ed1777e48e361f9d2a3b7f520c010886c7.jpg" alt="FORBAT Auto 90Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carro">Caminhão / Ônibus</span>
+            <h3 class="product-name">FORBAT Auto 90Ah</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">90Ah</span><span class="spec">CCA 720A</span><span class="spec">Heavy Duty</span></div>
+            <p class="product-desc">Bateria heavy duty para caminhões leves, ônibus, vans grandes e veículos comerciais. Máxima durabilidade.</p>
+            <div class="product-price">R$ 729,90 <span class="old-price">R$ 899,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Caminhões, ônibus e veículos comerciais
+              <span class="models">Modelos: Mercedes Sprinter, VW Delivery, Ford Cargo, Volvo VM, Scania P-Series, Iveco Daily, Hyundai HD80</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTACIONÁRIAS -->
+  <section class="section" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Baterias <span>Estacionárias</span></h2>
+        <p>Para nobreaks, sistemas de energia solar e aplicações industriais.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/images.tcdn.com.br/aa7e39d31cfc125c6b049b2c173f16c7b343c374.jpg" alt="FORBAT Station 45Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-estacionaria">Nobreak / Solar</span>
+            <h3 class="product-name">FORBAT Station 45Ah</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">45Ah</span><span class="spec">VRLA</span><span class="spec">Terminal L</span></div>
+            <p class="product-desc">Bateria estacionária VRLA para nobreaks de médio porte e sistemas de energia solar residencial.</p>
+            <div class="product-price">R$ 389,90 <span class="old-price">R$ 499,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Nobreaks e sistemas solares
+              <span class="models">Modelos: APC Back-UPS 2200VA, SMS Power Sinus 3200VA, Intelbras NB 1800, Nobreaks 1.5-3kVA, Sistemas solares 12V</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/suprinordeste.com.br/9eb04346e4d3286d7f86cfa3ef1842208c5efeaa.jpg" alt="FORBAT Station 100Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-estacionaria">Nobreak / Solar</span>
+            <h3 class="product-name">FORBAT Station 100Ah</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">100Ah</span><span class="spec">VRLA</span><span class="spec">Ciclo Profundo</span></div>
+            <p class="product-desc">Bateria estacionária de ciclo profundo para nobreaks industriais, sistemas solares e aplicações que exigem descarga prolongada.</p>
+            <div class="product-price">R$ 799,90 <span class="old-price">R$ 999,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Nobreaks industriais e sistemas solares
+              <span class="models">Modelos: APC Smart-UPS 5000VA+, SMS Sinus Double 6000VA, Sistemas solares 24V/48V, Energia off-grid, Telecomunicações</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/d28w5jlx3m10k.cloudfront.net/5025302331d4c7cd5f7bda6c279b105010fae976.webp" alt="FORBAT Station 150Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-estacionaria">Solar / Industrial</span>
+            <h3 class="product-name">FORBAT Station 150Ah</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">150Ah</span><span class="spec">VRLA</span><span class="spec">Ciclo Profundo</span></div>
+            <p class="product-desc">Bateria de alta capacidade para sistemas solares grandes, telecomunicações e aplicações industriais de alta demanda.</p>
+            <div class="product-price">R$ 1.199,90 <span class="old-price">R$ 1.499,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Sistemas solares e telecom
+              <span class="models">Modelos: Sistemas solares 5kW+, Torres de telecomunicação, Data centers, Sistemas de alarme industrial, Energia off-grid comercial</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTOS ELÉTRICAS -->
+  <section class="section" id="eletricos">
+    <div class="container">
+      <div class="section-header">
+        <h2>Baterias para <span>Motos Elétricas</span></h2>
+        <p>Alta potência e longa autonomia para mobilidade elétrica.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/www.bonnenbatteries.com/49fded6740c1a869ea2f7fb724631f71f731a21c.webp" alt="FORBAT Moto Pro 72V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-moto">Moto Elétrica</span>
+            <h3 class="product-name">FORBAT Moto Pro 72V</h3>
+            <div class="product-specs"><span class="spec">72V</span><span class="spec">80Ah</span><span class="spec">LiFePO4</span><span class="spec">5.000+ ciclos</span></div>
+            <p class="product-desc">Bateria de lítio LiFePO4 de alta performance para motos elétricas de médio e grande porte. Sistema BMS integrado.</p>
+            <div class="product-price">R$ 4.999,90 <span class="old-price">R$ 6.299,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Motos elétricas 72V
+              <span class="models">Modelos: Voltz EV1, Horwin CR6, Super Soco TC Max, NIU NQi GT, Kollter ES1, Zero FXS (adaptação)</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/images.tcdn.com.br/6ff4a196882c99c1a995d146a4feb6e4afa2c798.jpg" alt="FORBAT City 60V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-moto">Moto / Scooter</span>
+            <h3 class="product-name">FORBAT City 60V</h3>
+            <div class="product-specs"><span class="spec">60V</span><span class="spec">12Ah</span><span class="spec">Removível</span><span class="spec">Chave de segurança</span></div>
+            <p class="product-desc">Bateria removível com chave de segurança para scooters e motos elétricas urbanas. Design compacto.</p>
+            <div class="product-price">R$ 1.299,90 <span class="old-price">R$ 1.699,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Scooters 60V
+              <span class="models">Modelos: Citycoco 60V, Scooter Elétrico Sousa, Moto Elétrica Shineray 60V, Scooter Elétrico Genérico 60V</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/www.andupil.com/b7885226fcb5df2998f142e1bf30483bca8d42d4.jpg" alt="FORBAT Lead 12V Duo" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-moto">Moto Elétrica</span>
+            <h3 class="product-name">FORBAT Lead 12V Duo</h3>
+            <div class="product-specs"><span class="spec">12V</span><span class="spec">20Ah</span><span class="spec">Chumbo-Ácido</span><span class="spec">Ciclo Profundo</span></div>
+            <p class="product-desc">Par de baterias chumbo-ácido de ciclo profundo para motos elétricas e scooters de entrada.</p>
+            <div class="product-price">R$ 359,90 <span class="old-price">R$ 459,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Motos elétricas 48V/60V (série)
+              <span class="models">Modelos: Moto Elétrica 48V Genérica, Scooter Elétrico 48V, Triciclo Elétrico 48V, Cadeira de Rodas Elétrica</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/www.bonnenbatteries.com/49fded6740c1a869ea2f7fb724631f71f731a21c.webp" alt="FORBAT Moto Sport 72V 50Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-moto">Moto Elétrica</span>
+            <h3 class="product-name">FORBAT Moto Sport 72V 50Ah</h3>
+            <div class="product-specs"><span class="spec">72V</span><span class="spec">50Ah</span><span class="spec">Li-Íon</span><span class="spec">3.000 ciclos</span></div>
+            <p class="product-desc">Bateria Li-Íon de alta descarga para motos elétricas esportivas. Potência máxima com peso reduzido.</p>
+            <div class="product-price">R$ 3.499,90 <span class="old-price">R$ 4.499,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Motos elétricas 72V esportivas
+              <span class="models">Modelos: Horwin CR6 Pro, Super Soco TSx, NIU NGT, Kollter ES1 Pro, Moto Elétrica 72V 3000W+</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARROS ELÉTRICOS -->
+  <section class="section" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Baterias para <span>Carros Elétricos</span></h2>
+        <p>Potência e durabilidade para veículos elétricos de passeio e comerciais.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/sc04.alicdn.com/21a3a40f9aa011acfd9817c4dc93ccfbc7cd2210.jpg" alt="FORBAT EV Pack 96V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carro">Carro Elétrico</span>
+            <h3 class="product-name">FORBAT EV Pack 96V</h3>
+            <div class="product-specs"><span class="spec">96V</span><span class="spec">Modular</span><span class="spec">LiFePO4</span><span class="spec">OBC + DC-DC</span></div>
+            <p class="product-desc">Pack de baterias modular para carros elétricos leves e conversões. Inclui carregador onboard e conversor DC-DC.</p>
+            <div class="product-price">R$ 12.999,90 <span class="old-price">R$ 15.999,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Carros elétricos leves e conversões
+              <span class="models">Modelos: Conversão de Fusca Elétrico, Buggy Elétrico, Microvan Elétrica, Veículo Elétrico Artesanal 96V</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/v2charge.com/be356004014f6c17e11ace4f21c9609a6d3c3f47.jpg" alt="FORBAT EV Blade 400V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carro">Carro Elétrico Premium</span>
+            <h3 class="product-name">FORBAT EV Blade 400V</h3>
+            <div class="product-specs"><span class="spec">400V</span><span class="spec">60kWh</span><span class="spec">LFP Blade</span><span class="spec">8.000+ ciclos</span></div>
+            <p class="product-desc">Tecnologia Blade Battery LFP de última geração. Segurança máxima, autonomia superior e vida útil excepcional.</p>
+            <div class="product-price">R$ 45.999,90 <span class="old-price">R$ 54.999,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Carros elétricos modernos
+              <span class="models">Modelos: BYD Dolphin, BYD Seal, BYD Yuan Plus, Wuling Mini EV (upgrade), Chery iCar, JAC E-JS4</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/img.yfisher.com/4363c61fe17c18469ee4778cb6e2964c65ca85d5.webp" alt="FORBAT Marine 72V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-carro">Carro / Barco EV</span>
+            <h3 class="product-name">FORBAT Marine 72V</h3>
+            <div class="product-specs"><span class="spec">72V</span><span class="spec">80-150Ah</span><span class="spec">LiFePO4</span><span class="spec">UN38.3</span></div>
+            <p class="product-desc">Bateria de alta capacidade para carros elétricos compactos, barcos e veículos utilitários leves.</p>
+            <div class="product-price">R$ 8.999,90 <span class="old-price">R$ 11.499,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Carros compactos e barcos elétricos
+              <span class="models">Modelos: Carro Elétrico Compacto 72V, Barco Elétrico 72V, Veículo Utilitário Leve 72V, Golf Cart Elétrico</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIKES E SCOOTERS -->
+  <section class="section" id="produtos">
+    <div class="container">
+      <div class="section-header">
+        <h2>Baterias para <span>Bikes e Scooters</span></h2>
+        <p>Leveza e eficiência para mobilidade urbana sustentável.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/a2d8a6bb2db9ecde300668af417781274080fce3.jpg" alt="FORBAT Bike 48V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-bike">Bike Elétrica</span>
+            <h3 class="product-name">FORBAT Bike 48V</h3>
+            <div class="product-specs"><span class="spec">48V</span><span class="spec">10-20Ah</span><span class="spec">Li-Íon</span><span class="spec">Removível</span></div>
+            <p class="product-desc">Bateria removível com chave e indicador LED para bicicletas elétricas. Compacta, leve e fácil de carregar.</p>
+            <div class="product-price">R$ 1.599,90 <span class="old-price">R$ 2.099,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Bicicletas elétricas 48V
+              <span class="models">Modelos: Caloi E-Vibe, Sense Impulse, Oggi E-Bike, Track Bikes Elétrica, E-Moving, Bikes Elétricas Genéricas 48V</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/d5gag3xtge2og.cloudfront.net/1d678791c61bc66c8c746ddade5df22f49408d85.webp" alt="FORBAT Urban 48V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-bike">Bike / Moto Leve</span>
+            <h3 class="product-name">FORBAT Urban 48V</h3>
+            <div class="product-specs"><span class="spec">48V</span><span class="spec">15Ah</span><span class="spec">Li-Íon</span><span class="spec">1.000W</span></div>
+            <p class="product-desc">Bateria de alta potência para bikes elétricas e motos leves urbanas. Proteção contra curto, surto e sobre-tensão.</p>
+            <div class="product-price">R$ 1.899,90 <span class="old-price">R$ 2.399,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Bikes 48V 1000W e motos leves
+              <span class="models">Modelos: E-Moving 1000W, Moto Elétrica 48V 1000W, Bike Elétrica Fat Bike 48V, Triciclo Elétrico 48V 1000W</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/eacca341e5a102633a4edf40d3f1cb5c3293af39.jpg" alt="FORBAT Scoot 36V" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-scooter">Patinete / Scooter</span>
+            <h3 class="product-name">FORBAT Scoot 36V</h3>
+            <div class="product-specs"><span class="spec">36V</span><span class="spec">10Ah</span><span class="spec">18650</span><span class="spec">BMS Embutido</span></div>
+            <p class="product-desc">Pack de células 18650 com BMS integrado para scooters e patinetes elétricos. Leve, segura e com excelente autonomia.</p>
+            <div class="product-price">R$ 799,90 <span class="old-price">R$ 999,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Scooters 36V
+              <span class="models">Modelos: Xiaomi M365 / Pro / Pro 2, Ninebot Max G30, Foston S11, Scooter Elétrico Genérico 36V, Hoverboard 36V</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/eacca341e5a102633a4edf40d3f1cb5c3293af39.jpg" alt="FORBAT Scoot Pro 36V 15Ah" class="product-img" onerror="this.style.display='none'">
+          <div class="product-info">
+            <span class="product-tag tag-scooter">Scooter Premium</span>
+            <h3 class="product-name">FORBAT Scoot Pro 36V 15Ah</h3>
+            <div class="product-specs"><span class="spec">36V</span><span class="spec">15Ah</span><span class="spec">LG 18650</span><span class="spec">BMS Inteligente</span></div>
+            <p class="product-desc">Bateria premium com células LG 18650 para scooters de alta performance. Autonomia estendida e carregamento rápido.</p>
+            <div class="product-price">R$ 1.199,90 <span class="old-price">R$ 1.499,90</span></div>
+            <div class="product-vehicle">
+              <strong>Compatível com:</strong> Scooters premium 36V
+              <span class="models">Modelos: Ninebot Max G30, Xiaomi M365 Pro 2, Foston S11 Pro, Scooter Elétrico 36V 500W+, Patinete Elétrico Premium</span>
+            </div>
+            <a href="#inicio" class="whatsapp-btn" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VANTAGENS -->
+  <section class="section features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Por que escolher a <span>FORBAT</span>?</h2>
+        <p>Qualidade e confiança em cada produto.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon">🔋</div>
+          <h3>Alta Durabilidade</h3>
+          <p>Baterias com mais de 5.000 ciclos de vida útil, garantindo anos de uso contínuo.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">🛡️</div>
+          <h3>BMS Integrado</h3>
+          <p>Sistema de gerenciamento inteligente com proteção contra sobrecarga, curto e superaquecimento.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">⚡</div>
+          <h3>Carregamento Rápido</h3>
+          <p>Tecnologia de carregamento rápido que reduz o tempo de recarga em até 50%.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">♻️</div>
+          <h3>Eco-Friendly</h3>
+          <p>Baterias sustentáveis com baixo impacto ambiental e programa de reciclagem.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">📋</div>
+          <h3>Garantia Estendida</h3>
+          <p>Garantia de até 24 meses em todos os produtos, com suporte técnico especializado.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">🚚</div>
+          <h3>Entrega para Todo Brasil</h3>
+          <p>Envio rápido e seguro para qualquer região do país.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contato">
+    <div class="container">
+      <h2>Encontre a bateria <span>ideal</span> para seu veículo</h2>
+      <p>Temos a solução certa para carros, motos, bikes, scooters, carrinhos de criança e muito mais. Entre em contato e faça seu orçamento.</p>
+      <a href="#inicio" class="btn-primary" target="_blank">💬 Falar no WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>
+        <strong>FORBAT BATERIAS LTDA</strong><br>
+        CNPJ: 11.369.114/0001-20<br>
+        ENDEREÇO: AV MARECHAL CASTELO BRANCO, 174<br>
+        © 2026 — Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="#inicio" class="floating-whatsapp" target="_blank" title="Fale Conosco">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.358-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+</body>
+</html>
