@@ -827,15 +827,15 @@
 
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
-        <a href="#" class="logo">
+        <a href="#inicio" class="logo" target="_self">
             <i class="fas fa-wifi"></i>
             PORTAL DO CLIENTE
         </a>
         <ul class="nav-links">
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#vantagens">Vantagens</a></li>
-            <li><a href="#passoapasso">Como Funciona</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="#servicos" target="_self">Serviços</a></li>
+            <li><a href="#vantagens" target="_self">Vantagens</a></li>
+            <li><a href="#passoapasso" target="_self">Como Funciona</a></li>
+            <li><a href="#contato" target="_self">Contato</a></li>
         </ul>
         <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
             <i class="fas fa-bars"></i>
@@ -1121,6 +1121,21 @@
                 document.body.style.overflow = '';
             }
         }
+
+        /* ===== ÂNCORAS SEMPRE NA MESMA GUIA ===== */
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.setAttribute('target', '_self');
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const id = this.getAttribute('href');
+                if (id.length > 1) {
+                    const target = document.querySelector(id);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
