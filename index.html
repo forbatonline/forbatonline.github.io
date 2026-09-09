@@ -678,6 +678,127 @@
             color: rgba(255,255,255,0.4);
         }
 
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-card {
+            background: var(--bg);
+            color: var(--text);
+            max-width: 640px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: var(--radius);
+            padding: 40px;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+            transform: translateY(20px) scale(0.98);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.active .modal-card {
+            transform: translateY(0) scale(1);
+        }
+        .modal-card h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .modal-card .modal-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .modal-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 24px 0 8px;
+            color: var(--text);
+        }
+        .modal-card p,
+        .modal-card li {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            max-width: none;
+            margin: 0 0 12px;
+        }
+        .modal-card ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        /* ===== BOTÕES LEGAIS DO RODAPÉ ===== */
+        .footer-legal {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .footer-legal button {
+            background: transparent;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.85);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        .footer-legal button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .top-bar { padding: 10px 16px; font-size: 0.8rem; gap: 12px; }
@@ -690,6 +811,7 @@
             .step-connector { display: none; }
             .services-grid { grid-template-columns: 1fr; }
             .hero { min-height: 70vh; padding: 60px 20px; }
+            .modal-card { padding: 28px 20px; }
         }
     </style>
 <base target="_blank">
@@ -878,11 +1000,24 @@
                 <i class="fas fa-comment-dots"></i>
                 INICIAR ATENDIMENTO
             </a>
+            <div class="footer-legal">
+                <button onclick="openModal('privacy')"><i class="fas fa-lock" style="margin-right:6px;"></i>Política de Privacidade</button>
+                <button onclick="openModal('terms')"><i class="fas fa-file-contract" style="margin-right:6px;"></i>Termos de Uso</button>
+            </div>
+
             <div class="footer-bottom">
                 <p>© 2026 Portal do Cliente. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
 
     <script>
         // Scroll animations
@@ -905,6 +1040,90 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+        });
+
+        /* ===== MODAL ===== */
+        const modalContent = {
+            privacy: `
+                <span class="modal-tag">Privacidade</span>
+                <h2>Política de Privacidade</h2>
+                <p><strong>Última atualização:</strong> 09 de setembro de 2026</p>
+
+                <h3>1. Coleta de Dados</h3>
+                <p>Coletamos apenas as informações necessárias para prestar o atendimento solicitado, como nome, telefone, dados do contrato e o conteúdo da sua solicitação.</p>
+
+                <h3>2. Uso das Informações</h3>
+                <p>As informações são utilizadas exclusivamente para:</p>
+                <ul>
+                    <li>Processar suas solicitações de atendimento;</li>
+                    <li>Emitir segunda via de boletos;</li>
+                    <li>Prestar suporte técnico;</li>
+                    <li>Processar solicitações de cancelamento;</li>
+                    <li>Cumprir obrigações legais.</li>
+                </ul>
+
+                <h3>3. Proteção dos Dados</h3>
+                <p>Adotamos medidas de segurança técnicas e administrativas para proteger seus dados contra acessos não autorizados, vazamentos ou qualquer forma de tratamento inadequado.</p>
+
+                <h3>4. Seus Direitos</h3>
+                <p>Nos termos da Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), você pode solicitar a confirmação, o acesso, a correção, a anonimização ou a eliminação dos seus dados pessoais a qualquer momento pelo nosso canal de atendimento.</p>
+
+                <h3>5. Compartilhamento</h3>
+                <p>Não vendemos, alugamos ou comercializamos seus dados pessoais. O compartilhamento ocorre apenas quando estritamente necessário para a execução do serviço contratado ou por determinação legal.</p>
+
+                <h3>6. Alterações</h3>
+                <p>Esta política pode ser atualizada periodicamente. Recomendamos a revisão regular desta página para se manter informado sobre como protegemos suas informações.</p>
+            `,
+            terms: `
+                <span class="modal-tag">Termos</span>
+                <h2>Termos de Uso</h2>
+                <p><strong>Última atualização:</strong> 09 de setembro de 2026</p>
+
+                <h3>1. Aceitação</h3>
+                <p>Ao utilizar este portal de atendimento, você concorda com estes termos e condições de uso. Caso não concorde, por favor, não utilize os serviços disponibilizados.</p>
+
+                <h3>2. Serviços Oferecidos</h3>
+                <p>O portal disponibiliza canais digitais para:</p>
+                <ul>
+                    <li>Solicitação de 2ª via de boleto atualizada;</li>
+                    <li>Atendimento de suporte técnico;</li>
+                    <li>Solicitação de cancelamento de serviços.</li>
+                </ul>
+
+                <h3>3. Responsabilidades do Usuário</h3>
+                <p>Você se compromete a fornecer informações verdadeiras e precisas, além de manter seus dados cadastrais atualizados. O uso indevido do portal pode resultar na recusa ou suspensão do atendimento.</p>
+
+                <h3>4. Disponibilidade do Serviço</h3>
+                <p>Nos esforçamos para manter o portal disponível 24 horas por dia, 7 dias por semana, mas não garantimos funcionamento ininterrupto ou livre de erros, podendo haver interrupções para manutenção ou por motivos de força maior.</p>
+
+                <h3>5. Atendimento via WhatsApp</h3>
+                <p>Ao clicar nos botões de atendimento, você será redirecionado ao WhatsApp, plataforma de terceiros, ficando sujeito também aos termos de uso da mesma.</p>
+
+                <h3>6. Limitação de Responsabilidade</h3>
+                <p>Não nos responsabilizamos por falhas de conectividade do usuário, informações incorretas fornecidas pelo próprio usuário ou por danos decorrentes do uso inadequado do portal.</p>
+
+                <h3>7. Alterações dos Termos</h3>
+                <p>Estes termos podem ser alterados a qualquer momento. O uso continuado do portal após as alterações constitui aceitação dos novos termos.</p>
+            `
+        };
+
+        function openModal(type) {
+            const overlay = document.getElementById('modalOverlay');
+            const content = document.getElementById('modalContent');
+            content.innerHTML = modalContent[type];
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'modalOverlay') {
+                document.getElementById('modalOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
         });
     </script>
 </body>
