@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal do Cliente — Atendimento & Suporte</title>
+    <title>FORBAT Baterias — Venda e Instalação de Baterias em Mogi Guaçu/SP</title>
+    <meta name="description" content="FORBAT Baterias LTDA — Venda, teste e instalação de baterias automotivas em Mogi Guaçu/SP. Atendimento rápido e qualidade garantida.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary: #0d47a1;
-            --primary-light: #1976d2;
-            --primary-dark: #0a357a;
-            --accent: #00c853;
-            --accent-glow: rgba(0, 200, 83, 0.3);
+            --primary: #b71c1c;
+            --primary-light: #e53935;
+            --primary-dark: #7f0000;
+            --accent: #ffc107;
+            --accent-dark: #ff8f00;
             --text: #1a1a2e;
             --text-light: #4a4a5a;
             --text-muted: #7a7a8a;
             --bg: #ffffff;
             --bg-light: #f8fafc;
-            --bg-dark: #0f172a;
             --border: #e2e8f0;
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -47,20 +47,12 @@
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
         @keyframes slideInLeft {
             from { opacity: 0; transform: translateX(-60px); }
             to { opacity: 1; transform: translateX(0); }
         }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(60px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); }
             50% { box-shadow: 0 0 0 12px transparent; }
         }
         @keyframes float {
@@ -72,17 +64,12 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
 
         .animate { opacity: 0; }
         .animate.visible {
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .animate-left.visible { animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .animate-right.visible { animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
@@ -91,7 +78,7 @@
 
         /* ===== TOP BAR ===== */
         .top-bar {
-            background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(90deg, #111111 0%, #1e1e1e 100%);
             color: #fff;
             padding: 12px 24px;
             display: flex;
@@ -121,7 +108,8 @@
         }
         .top-bar .btn-outline:hover {
             background: rgba(255,255,255,0.1);
-            border-color: #fff;
+            border-color: var(--accent);
+            color: var(--accent);
             transform: translateY(-1px);
         }
 
@@ -129,7 +117,7 @@
         .navbar {
             position: sticky;
             top: 0;
-            background: rgba(255,255,255,0.85);
+            background: rgba(255,255,255,0.9);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid rgba(226,232,240,0.6);
@@ -153,7 +141,7 @@
             gap: 10px;
             text-decoration: none;
         }
-        .logo i { color: var(--accent); font-size: 1.1rem; }
+        .logo i { color: var(--accent-dark); font-size: 1.1rem; }
         .nav-links {
             display: flex;
             gap: 32px;
@@ -199,7 +187,7 @@
             text-align: center;
             padding: 80px 24px;
             overflow: hidden;
-            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 30%, #0a357a 70%, #0f172a 100%);
+            background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 30%, #7f0000 70%, #111111 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -207,7 +195,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             opacity: 0.5;
         }
         .hero::after {
@@ -251,7 +239,7 @@
             opacity: 0;
         }
         .hero h1 span {
-            background: linear-gradient(135deg, #4fc3f7, #00c853);
+            background: linear-gradient(135deg, #ffc107, #ff8f00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -269,8 +257,8 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(135deg, var(--accent), #00e676);
-            color: #fff;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #111;
             padding: 16px 40px;
             border-radius: 50px;
             font-weight: 700;
@@ -278,14 +266,14 @@
             text-decoration: none;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,200,83,0.4), 0 0 0 0 var(--accent-glow);
+            box-shadow: 0 4px 20px rgba(255,193,7,0.4), 0 0 0 0 rgba(255,193,7,0.3);
             transition: all 0.3s ease;
             animation: fadeInUp 0.6s 0.3s ease forwards, pulse 2s infinite;
             opacity: 0;
         }
         .hero .btn-primary:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 30px rgba(0,200,83,0.5);
+            box-shadow: 0 8px 30px rgba(255,193,7,0.5);
         }
         .hero .btn-primary i { font-size: 1.1rem; }
 
@@ -297,16 +285,16 @@
             opacity: 0.15;
             animation: float 6s ease-in-out infinite;
         }
-        .orb-1 { width: 300px; height: 300px; background: #4fc3f7; top: 10%; left: 10%; animation-delay: 0s; }
-        .orb-2 { width: 250px; height: 250px; background: var(--accent); bottom: 20%; right: 10%; animation-delay: 2s; }
-        .orb-3 { width: 200px; height: 200px; background: #7c4dff; top: 40%; right: 30%; animation-delay: 4s; }
+        .orb-1 { width: 300px; height: 300px; background: #ffc107; top: 10%; left: 10%; animation-delay: 0s; }
+        .orb-2 { width: 250px; height: 250px; background: #e53935; bottom: 20%; right: 10%; animation-delay: 2s; }
+        .orb-3 { width: 200px; height: 200px; background: #ff8f00; top: 40%; right: 30%; animation-delay: 4s; }
 
         /* ===== SECTIONS COMMON ===== */
         section { padding: 100px 24px; }
         .container { max-width: 1200px; margin: 0 auto; }
         .section-header {
             text-align: center;
-            max-width: 600px;
+            max-width: 640px;
             margin: 0 auto 60px;
         }
         .section-header h2 {
@@ -379,9 +367,9 @@
             transition: transform 0.3s ease;
         }
         .service-card:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
-        .icon-boleto { background: linear-gradient(135deg, #1565c0, #0d47a1); }
-        .icon-suporte { background: linear-gradient(135deg, #00c853, #00e676); }
-        .icon-cancel { background: linear-gradient(135deg, #ff5252, #d32f2f); }
+        .icon-venda { background: linear-gradient(135deg, #e53935, #b71c1c); }
+        .icon-teste { background: linear-gradient(135deg, #ffc107, #ff8f00); }
+        .icon-instala { background: linear-gradient(135deg, #37474f, #111111); }
         .service-card h3 {
             font-size: 1.2rem;
             font-weight: 700;
@@ -407,7 +395,7 @@
             gap: 10px;
         }
         .service-card ul li i {
-            color: var(--accent);
+            color: var(--accent-dark);
             font-size: 0.8rem;
             margin-top: 4px;
             flex-shrink: 0;
@@ -425,32 +413,32 @@
             border: none;
             cursor: pointer;
         }
-        .btn-blue {
+        .btn-red {
             background: linear-gradient(135deg, var(--primary-light), var(--primary));
             color: #fff;
-            box-shadow: 0 4px 15px rgba(13,71,161,0.3);
-        }
-        .btn-blue:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(13,71,161,0.4);
-        }
-        .btn-green {
-            background: linear-gradient(135deg, var(--accent), #00e676);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(0,200,83,0.3);
-        }
-        .btn-green:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,200,83,0.4);
-        }
-        .btn-red {
-            background: linear-gradient(135deg, #ff5252, #d32f2f);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(211,47,47,0.3);
+            box-shadow: 0 4px 15px rgba(183,28,28,0.3);
         }
         .btn-red:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(211,47,47,0.4);
+            box-shadow: 0 8px 25px rgba(183,28,28,0.4);
+        }
+        .btn-yellow {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #111;
+            box-shadow: 0 4px 15px rgba(255,143,0,0.3);
+        }
+        .btn-yellow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,143,0,0.4);
+        }
+        .btn-dark {
+            background: linear-gradient(135deg, #455a64, #111111);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .btn-dark:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
         /* ===== ADVANTAGES ===== */
@@ -475,13 +463,6 @@
             transition: transform 0.6s ease;
         }
         .advantages-img:hover img { transform: scale(1.05); }
-        .advantages-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(13,71,161,0.1), rgba(0,200,83,0.05));
-            pointer-events: none;
-        }
         .advantages-list { display: flex; flex-direction: column; gap: 28px; }
         .advantage-item {
             display: flex;
@@ -506,7 +487,7 @@
             justify-content: center;
             color: #fff;
             font-size: 1.1rem;
-            box-shadow: 0 4px 12px rgba(13,71,161,0.2);
+            box-shadow: 0 4px 12px rgba(183,28,28,0.2);
         }
         .advantage-item h4 {
             font-size: 1.1rem;
@@ -532,272 +513,114 @@
             border-radius: 50px;
             font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 4px 20px rgba(13,71,161,0.3);
+            box-shadow: 0 4px 20px rgba(183,28,28,0.3);
             transition: all 0.3s ease;
         }
         .advantages-cta .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(13,71,161,0.4);
+            box-shadow: 0 8px 30px rgba(183,28,28,0.4);
         }
 
-        /* ===== STEPS ===== */
-        .steps { background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg) 100%); }
-        .steps-grid {
+        /* ===== CONTACT ===== */
+        .contact { background: var(--bg-light); }
+        .contact-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            position: relative;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
         }
-        .step-card {
+        .contact-card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            border: 1px solid var(--border);
             text-align: center;
-            padding: 40px 24px;
-            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .step-number {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 0 auto 24px;
-            box-shadow: 0 8px 24px rgba(13,71,161,0.25);
-            position: relative;
-            z-index: 2;
-            transition: transform 0.3s ease;
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
         }
-        .step-card:hover .step-number { transform: scale(1.1); }
-        .step-card h3 {
-            font-size: 1.2rem;
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        .contact-card h4 {
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: var(--text);
         }
-        .step-card p {
+        .contact-card p {
             color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.6;
         }
-        .step-connector {
-            position: absolute;
-            top: 70px;
-            left: 20%;
-            right: 20%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-light), var(--accent));
-            opacity: 0.2;
-            z-index: 1;
-        }
-        .steps-cta {
-            text-align: center;
-            margin-top: 48px;
-        }
-        .steps-cta .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            color: #fff;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(13,71,161,0.3);
-            transition: all 0.3s ease;
-        }
-        .steps-cta .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(13,71,161,0.4);
-        }
 
         /* ===== FOOTER ===== */
         .footer {
-            background: linear-gradient(135deg, #0a0e1a, #0f172a);
+            background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
             color: #fff;
             padding: 60px 24px 30px;
-            text-align: center;
         }
         .footer-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-        }
-        .footer-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 1.4rem;
-            color: #fff;
-            box-shadow: 0 8px 24px rgba(13,71,161,0.3);
-            animation: float 4s ease-in-out infinite;
-        }
-        .footer h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        .footer p {
-            color: rgba(255,255,255,0.7);
-            font-size: 1rem;
-            line-height: 1.7;
-            max-width: 600px;
-            margin: 0 auto 24px;
-        }
-        .footer .btn-accent {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--accent), #00e676);
-            color: #fff;
-            padding: 14px 36px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(0,200,83,0.3);
-            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
             margin-bottom: 40px;
         }
-        .footer .btn-accent:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,200,83,0.4);
+        .footer-brand h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-brand h3 i { color: var(--accent); }
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .footer-info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .footer-info ul {
+            list-style: none;
+        }
+        .footer-info li {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            padding: 6px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.6;
+        }
+        .footer-info li i {
+            color: var(--accent);
+            margin-top: 4px;
+            font-size: 0.85rem;
+            flex-shrink: 0;
         }
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.08);
             padding-top: 24px;
-            margin-top: 20px;
+            text-align: center;
             font-size: 0.85rem;
             color: rgba(255,255,255,0.4);
         }
-
-        /* ===== MODAL ===== */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.75);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-card {
-            background: var(--bg);
-            color: var(--text);
-            max-width: 640px;
-            width: 100%;
-            max-height: 80vh;
-            overflow-y: auto;
-            border-radius: var(--radius);
-            padding: 40px;
-            position: relative;
-            box-shadow: var(--shadow-xl);
-            transform: translateY(20px) scale(0.98);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .modal-overlay.active .modal-card {
-            transform: translateY(0) scale(1);
-        }
-        .modal-card h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-        .modal-card .modal-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            color: #fff;
-            padding: 4px 14px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-        .modal-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin: 24px 0 8px;
-            color: var(--text);
-        }
-        .modal-card p,
-        .modal-card li {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            line-height: 1.7;
-            max-width: none;
-            margin: 0 0 12px;
-        }
-        .modal-card ul {
-            padding-left: 20px;
-            margin-bottom: 12px;
-        }
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: none;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            color: #fff;
-            font-size: 1.4rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            line-height: 1;
-        }
-        .modal-close:hover {
-            transform: rotate(90deg);
-        }
-
-        /* ===== BOTÕES LEGAIS DO RODAPÉ ===== */
-        .footer-legal {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 16px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        .footer-legal button {
-            background: transparent;
-            border: 1.5px solid rgba(255,255,255,0.3);
-            color: rgba(255,255,255,0.85);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-        .footer-legal button:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-1px);
-        }
+        .footer-bottom strong { color: rgba(255,255,255,0.6); }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
@@ -807,35 +630,32 @@
             .mobile-toggle { display: block; }
             section { padding: 60px 20px; }
             .advantages-inner { grid-template-columns: 1fr; gap: 40px; }
-            .steps-grid { grid-template-columns: 1fr; gap: 32px; }
-            .step-connector { display: none; }
             .services-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; gap: 32px; }
             .hero { min-height: 70vh; padding: 60px 20px; }
-            .modal-card { padding: 28px 20px; }
         }
     </style>
-
 <base target="_blank">
 </head>
 <body>
 
     <!-- TOP BAR -->
     <div class="top-bar">
-        <span><i class="fas fa-bolt"></i> SOLICITAR ATENDIMENTO RÁPIDO!</span>
-        <a href="https://wa.me/5511961059526?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20com%20um%20especialista." class="btn-outline"><i class="fas fa-headset"></i> FALAR COM ESPECIALISTA</a>
+        <span><i class="fas fa-bolt"></i> BATERIA COM PROBLEMA? FALE AGORA COM A GENTE!</span>
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20com%20a%20FORBAT%20Baterias." class="btn-outline"><i class="fab fa-whatsapp"></i> FALAR NO WHATSAPP</a>
     </div>
 
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
-        <a href="#inicio" class="logo" target="_self">
-            <i class="fas fa-wifi"></i>
-            PORTAL DO CLIENTE
+        <a href="#inicio" class="logo">
+            <i class="fas fa-car-battery"></i>
+            FORBAT BATERIAS
         </a>
         <ul class="nav-links">
-            <li><a href="#servicos" target="_self">Serviços</a></li>
-            <li><a href="#vantagens" target="_self">Vantagens</a></li>
-            <li><a href="#passoapasso" target="_self">Como Funciona</a></li>
-            <li><a href="#contato" target="_self">Contato</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#vantagens">Vantagens</a></li>
+            <li><a href="#contato">Contato</a></li>
         </ul>
         <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
             <i class="fas fa-bars"></i>
@@ -850,13 +670,13 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <i class="fas fa-circle-check"></i>
-                Atendimento 100% Digital
+                Atendimento em Mogi Guaçu/SP
             </div>
-            <h1>Portal de <span>Atendimento</span> ao Cliente!</h1>
-            <p>Emita boletos, tire dúvidas, soluções rápidas e eficazes para problemas de conexão, configuração e desempenho da sua rede. Tudo direto no seu celular.</p>
-            <a href="https://wa.me/5511961059526?text=Ol%C3%A1%21%20Vim%20pelo%20Portal%20do%20Cliente%20e%20gostaria%20de%20solicitar%20atendimento." class="btn-primary">
-                <i class="fas fa-comment-dots"></i>
-                SOLICITAR ATENDIMENTO
+            <h1>Baterias de <span>Qualidade</span> para o seu Veículo!</h1>
+            <p>Venda, teste e instalação de baterias automotivas com garantia e preço justo. Na FORBAT Baterias você encontra as melhores marcas e um atendimento que entende do assunto.</p>
+            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20FORBAT%20Baterias%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." class="btn-primary">
+                <i class="fab fa-whatsapp"></i>
+                SOLICITAR ORÇAMENTO
             </a>
         </div>
     </section>
@@ -866,42 +686,42 @@
         <div class="container">
             <div class="section-header animate">
                 <span class="section-label">Nossos Serviços</span>
-                <h2>Tudo o que você precisa saber para usar nossos serviços da melhor forma!</h2>
-                <p>Escolha a opção que melhor atende à sua necessidade e resolva em minutos.</p>
+                <h2>Tudo para sua bateria em um só lugar</h2>
+                <p>Escolha o serviço que você precisa e resolva de forma rápida e segura.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card animate delay-1">
-                    <div class="service-icon icon-boleto"><i class="fas fa-file-invoice-dollar"></i></div>
-                    <h3>Emitir 2ª Via Atualizada</h3>
-                    <p>Peça a segunda via do seu boleto e receba os dados para pagamento no suporte digital.</p>
+                    <div class="service-icon icon-venda"><i class="fas fa-car-battery"></i></div>
+                    <h3>Venda de Baterias</h3>
+                    <p>Baterias novas das melhores marcas para carros, motos, utilitários e caminhões.</p>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> Receba a via atualizada</li>
-                        <li><i class="fas fa-check-circle"></i> Dados inclusos para pagamento</li>
-                        <li><i class="fas fa-check-circle"></i> Suporte rápido</li>
+                        <li><i class="fas fa-check-circle"></i> Marcas confiáveis e garantia</li>
+                        <li><i class="fas fa-check-circle"></i> Preço justo e transparente</li>
+                        <li><i class="fas fa-check-circle"></i> Bateria na medida do seu veículo</li>
                     </ul>
-                    <a href="https://wa.me/5511961059526?text=Ol%C3%A1%21%20Preciso%20da%202%C2%AA%20via%20do%20meu%20boleto%20atualizado." class="btn btn-blue">EMITIR 2ª VIA</a>
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Gostaria%20de%20comprar%20uma%20bateria%20nova." class="btn btn-red">CONSULTAR PREÇO</a>
                 </div>
                 <div class="service-card animate delay-2">
-                    <div class="service-icon icon-suporte"><i class="fas fa-screwdriver-wrench"></i></div>
-                    <h3>Suporte Técnico</h3>
-                    <p>Verifique pelo suporte a solução rápida para seu problema com a internet, entre em contato.</p>
+                    <div class="service-icon icon-teste"><i class="fas fa-gauge-high"></i></div>
+                    <h3>Teste e Diagnóstico</h3>
+                    <p>Teste gratuito da bateria e do sistema de carga para saber exatamente o que seu carro precisa.</p>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> Verificação de condições</li>
-                        <li><i class="fas fa-check-circle"></i> Alternativas apresentadas no suporte</li>
-                        <li><i class="fas fa-check-circle"></i> Procedimento online</li>
+                        <li><i class="fas fa-check-circle"></i> Teste de bateria e alternador</li>
+                        <li><i class="fas fa-check-circle"></i> Diagnóstico honesto</li>
+                        <li><i class="fas fa-check-circle"></i> Só troca se for necessário</li>
                     </ul>
-                    <a href="https://wa.me/5511961059526?text=Ol%C3%A1%21%20Estou%20com%20problema%20na%20minha%20conex%C3%A3o%20e%20preciso%20de%20suporte%20t%C3%A9cnico." class="btn btn-green">SOLICITAR SUPORTE</a>
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20um%20teste%20de%20bateria." class="btn btn-yellow">AGENDAR TESTE</a>
                 </div>
                 <div class="service-card animate delay-3">
-                    <div class="service-icon icon-cancel"><i class="fas fa-user-xmark"></i></div>
-                    <h3>Cancelamento</h3>
-                    <p>Solicite o cancelamento quando quiser, suporte online disponível para cancelamento.</p>
+                    <div class="service-icon icon-instala"><i class="fas fa-screwdriver-wrench"></i></div>
+                    <h3>Troca e Instalação</h3>
+                    <p>Troca rápida com instalação feita por profissionais, sem complicação e sem sujeira.</p>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> Atendimento exclusivo</li>
-                        <li><i class="fas fa-check-circle"></i> Instruções no suporte</li>
-                        <li><i class="fas fa-check-circle"></i> Atendimento sigiloso para você</li>
+                        <li><i class="fas fa-check-circle"></i> Instalação profissional</li>
+                        <li><i class="fas fa-check-circle"></i> Atendimento ágil</li>
+                        <li><i class="fas fa-check-circle"></i> Descarte correto da bateria usada</li>
                     </ul>
-                    <a href="https://wa.me/5511961059526?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20o%20cancelamento%20do%20meu%20servi%C3%A7o." class="btn btn-red">CANCELAMENTO IMEDIATO</a>
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Preciso%20trocar%20a%20bateria%20do%20meu%20ve%C3%ADculo." class="btn btn-dark">TROCAR AGORA</a>
                 </div>
             </div>
         </div>
@@ -912,112 +732,102 @@
         <div class="container">
             <div class="advantages-inner">
                 <div class="advantages-img animate-left">
-                    <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&h=700&fit=crop&crop=faces" alt="Mulher sorrindo usando fones de ouvido e celular">
+                    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=700&fit=crop" alt="Mecânico trocando bateria de carro">
                 </div>
                 <div class="advantages-content">
                     <div class="section-header animate" style="text-align:left; margin:0 0 40px 0;">
                         <span class="section-label">Diferenciais</span>
-                        <h2>Vantagens da nossa Plataforma</h2>
-                        <p>Facilidades pensadas para o seu dia a dia!</p>
+                        <h2>Por que escolher a FORBAT?</h2>
+                        <p>Qualidade e confiança para você não ficar na mão.</p>
                     </div>
                     <div class="advantages-list">
                         <div class="advantage-item animate delay-1">
-                            <div class="advantage-icon"><i class="fas fa-heart"></i></div>
+                            <div class="advantage-icon"><i class="fas fa-certificate"></i></div>
                             <div>
-                                <h4>Suporte Humanizado</h4>
-                                <p>Um canal digital pensado para guiar sua demanda com objetividade e transparência.</p>
+                                <h4>Produtos com Garantia</h4>
+                                <p>Trabalhamos apenas com baterias de fabricantes reconhecidos, com garantia real de fábrica.</p>
                             </div>
                         </div>
                         <div class="advantage-item animate delay-2">
-                            <div class="advantage-icon"><i class="fas fa-shield-halved"></i></div>
+                            <div class="advantage-icon"><i class="fas fa-hand-holding-dollar"></i></div>
                             <div>
-                                <h4>Dados Protegidos</h4>
-                                <p>As informações compartilhadas no suporte seguem as diretrizes vigentes e a política de privacidade.</p>
+                                <h4>Preço Justo</h4>
+                                <p>Orçamento transparente, sem taxas escondidas e com as melhores condições da região.</p>
                             </div>
                         </div>
                         <div class="advantage-item animate delay-3">
-                            <div class="advantage-icon"><i class="fas fa-bolt"></i></div>
+                            <div class="advantage-icon"><i class="fas fa-people-arrows"></i></div>
                             <div>
-                                <h4>Rapidez no Processo</h4>
-                                <p>Faça suas solicitações pelo celular, sem precisar se deslocar até um local físico.</p>
+                                <h4>Atendimento Especializado</h4>
+                                <p>Equipe que entende de baterias e orienta você para fazer a escolha certa para o seu veículo.</p>
                             </div>
                         </div>
                         <div class="advantage-item animate delay-4">
-                            <div class="advantage-icon"><i class="fas fa-mobile-screen"></i></div>
+                            <div class="advantage-icon"><i class="fas fa-recycle"></i></div>
                             <div>
-                                <h4>Acesso Direto e Fácil</h4>
-                                <p>Inicie sua demanda quando quiser e receba retorno de acordo com a disponibilidade da equipe.</p>
+                                <h4>Descarte Responsável</h4>
+                                <p>Realizamos o descarte ambientalmente correto das baterias usadas, conforme a legislação.</p>
                             </div>
                         </div>
                     </div>
                     <div class="advantages-cta animate delay-5">
-                        <a href="https://wa.me/5511961059526?text=Ol%C3%A1%21%20Vim%20pelo%20Portal%20do%20Cliente%20e%20gostaria%20de%20solicitar%20atendimento." class="btn-primary"><i class="fas fa-comment-dots"></i> SOLICITAR ATENDIMENTO</a>
+                        <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20FORBAT%20Baterias%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." class="btn-primary"><i class="fab fa-whatsapp"></i> FAZER ORÇAMENTO</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- STEPS -->
-    <section class="steps" id="passoapasso">
+    <!-- CONTACT -->
+    <section class="contact" id="contato">
         <div class="container">
             <div class="section-header animate">
-                <span class="section-label">Processo</span>
-                <h2>Passo a Passo</h2>
-                <p>Três etapas rápidas para ser atendido</p>
+                <span class="section-label">Contato</span>
+                <h2>Fale com a gente</h2>
+                <p>Estamos prontos para atender você. Escolha o canal de sua preferência.</p>
             </div>
-            <div class="steps-grid">
-                <div class="step-connector"></div>
-                <div class="step-card animate delay-1">
-                    <div class="step-number">1</div>
-                    <h3>Abra o Chat</h3>
-                    <p>Toque no botão <strong>SOLICITAR ATENDIMENTO</strong> e inicie a conversa com nosso canal de suporte digital.</p>
+            <div class="contact-grid">
+                <div class="contact-card animate delay-1">
+                    <i class="fas fa-location-dot"></i>
+                    <h4>Endereço</h4>
+                    <p>Av. Mal. Castelo Branco, 174<br>Loteamento Morro de Ouro<br>Mogi Guaçu/SP — 13840-060</p>
                 </div>
-                <div class="step-card animate delay-2">
-                    <div class="step-number">2</div>
-                    <h3>Descreva o Que Precisa</h3>
-                    <p>Diga se quer segunda via do boleto, solicitar atendimento para resolver problemas com sua internet ou cancelamento.</p>
+                <div class="contact-card animate delay-2">
+                    <i class="fab fa-whatsapp"></i>
+                    <h4>WhatsApp</h4>
+                    <p>Atendimento rápido pelo WhatsApp.<br>Toque no botão e fale conosco agora mesmo.</p>
                 </div>
-                <div class="step-card animate delay-3">
-                    <div class="step-number">3</div>
-                    <h3>Receba o Retorno</h3>
-                    <p>A equipe envia as orientações e dados conforme o que foi solicitado.</p>
+                <div class="contact-card animate delay-3">
+                    <i class="fas fa-clock"></i>
+                    <h4>Horário de Atendimento</h4>
+                    <p>Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p>
                 </div>
-            </div>
-            <div class="steps-cta animate">
-                <a href="https://wa.me/5511961059526?text=Ol%C3%A1%21%20Vim%20pelo%20Portal%20do%20Cliente%20e%20gostaria%20de%20solicitar%20atendimento." class="btn-primary"><i class="fas fa-paper-plane"></i> SOLICITAR ATENDIMENTO</a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer" id="contato">
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-icon"><i class="fas fa-headset"></i></div>
-            <h3>Precisa de Ajuda?</h3>
-            <p>Sinta-se à vontade para entrar em contato conosco se tiver algum problema. Nossa equipe de suporte está disponível <strong>24 horas por dia, 7 dias por semana</strong>.</p>
-            <a href="https://wa.me/5511961059526?text=Ol%C3%A1%21%20Preciso%20de%20ajuda.%20Vim%20pelo%20Portal%20do%20Cliente." class="btn-accent">
-                <i class="fas fa-comment-dots"></i>
-                INICIAR ATENDIMENTO
-            </a>
-            <div class="footer-legal">
-                <button onclick="openModal('privacy')"><i class="fas fa-lock" style="margin-right:6px;"></i>Política de Privacidade</button>
-                <button onclick="openModal('terms')"><i class="fas fa-file-contract" style="margin-right:6px;"></i>Termos de Uso</button>
+            <div class="footer-brand">
+                <h3><i class="fas fa-car-battery"></i> FORBAT BATERIAS</h3>
+                <p>Venda, teste e instalação de baterias automotivas em Mogi Guaçu/SP. Qualidade garantida, preço justo e atendimento especializado para você não ficar na mão.</p>
             </div>
-
-            <div class="footer-bottom">
-                <p>© 2026 Portal do Cliente. Todos os direitos reservados.</p>
+            <div class="footer-info">
+                <h4>Dados da Empresa</h4>
+                <ul>
+                    <li><i class="fas fa-building"></i> FORBAT BATERIAS LTDA</li>
+                    <li><i class="fas fa-id-card"></i> CNPJ: 11.369.114/0001-20</li>
+                    <li><i class="fas fa-location-dot"></i> Av. Mal. Castelo Branco, 174 — Loteamento Morro de Ouro</li>
+                    <li><i class="fas fa-city"></i> Mogi Guaçu/SP — CEP 13840-060</li>
+                    <li><i class="fas fa-earth-americas"></i> Brasil</li>
+                </ul>
             </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 <strong>FORBAT BATERIAS LTDA</strong> — CNPJ: 11.369.114/0001-20. Todos os direitos reservados.</p>
         </div>
     </footer>
-
-    <!-- MODAL -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div id="modalContent"></div>
-        </div>
-    </div>
 
     <script>
         // Scroll animations
@@ -1030,7 +840,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.animate, .animate-left, .animate-right').forEach(el => observer.observe(el));
+        document.querySelectorAll('.animate, .animate-left').forEach(el => observer.observe(el));
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
@@ -1042,103 +852,16 @@
             }
         });
 
-        /* ===== MODAL ===== */
-        const modalContent = {
-            privacy: `
-                <span class="modal-tag">Privacidade</span>
-                <h2>Política de Privacidade</h2>
-                <p><strong>Última atualização:</strong> 09 de setembro de 2026</p>
-
-                <h3>1. Coleta de Dados</h3>
-                <p>Coletamos apenas as informações necessárias para prestar o atendimento solicitado, como nome, telefone, dados do contrato e o conteúdo da sua solicitação.</p>
-
-                <h3>2. Uso das Informações</h3>
-                <p>As informações são utilizadas exclusivamente para:</p>
-                <ul>
-                    <li>Processar suas solicitações de atendimento;</li>
-                    <li>Emitir segunda via de boletos;</li>
-                    <li>Prestar suporte técnico;</li>
-                    <li>Processar solicitações de cancelamento;</li>
-                    <li>Cumprir obrigações legais.</li>
-                </ul>
-
-                <h3>3. Proteção dos Dados</h3>
-                <p>Adotamos medidas de segurança técnicas e administrativas para proteger seus dados contra acessos não autorizados, vazamentos ou qualquer forma de tratamento inadequado.</p>
-
-                <h3>4. Seus Direitos</h3>
-                <p>Nos termos da Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), você pode solicitar a confirmação, o acesso, a correção, a anonimização ou a eliminação dos seus dados pessoais a qualquer momento pelo nosso canal de atendimento.</p>
-
-                <h3>5. Compartilhamento</h3>
-                <p>Não vendemos, alugamos ou comercializamos seus dados pessoais. O compartilhamento ocorre apenas quando estritamente necessário para a execução do serviço contratado ou por determinação legal.</p>
-
-                <h3>6. Alterações</h3>
-                <p>Esta política pode ser atualizada periodicamente. Recomendamos a revisão regular desta página para se manter informado sobre como protegemos suas informações.</p>
-            `,
-            terms: `
-                <span class="modal-tag">Termos</span>
-                <h2>Termos de Uso</h2>
-                <p><strong>Última atualização:</strong> 09 de setembro de 2026</p>
-
-                <h3>1. Aceitação</h3>
-                <p>Ao utilizar este portal de atendimento, você concorda com estes termos e condições de uso. Caso não concorde, por favor, não utilize os serviços disponibilizados.</p>
-
-                <h3>2. Serviços Oferecidos</h3>
-                <p>O portal disponibiliza canais digitais para:</p>
-                <ul>
-                    <li>Solicitação de 2ª via de boleto atualizada;</li>
-                    <li>Atendimento de suporte técnico;</li>
-                    <li>Solicitação de cancelamento de serviços.</li>
-                </ul>
-
-                <h3>3. Responsabilidades do Usuário</h3>
-                <p>Você se compromete a fornecer informações verdadeiras e precisas, além de manter seus dados cadastrais atualizados. O uso indevido do portal pode resultar na recusa ou suspensão do atendimento.</p>
-
-                <h3>4. Disponibilidade do Serviço</h3>
-                <p>Nos esforçamos para manter o portal disponível 24 horas por dia, 7 dias por semana, mas não garantimos funcionamento ininterrupto ou livre de erros, podendo haver interrupções para manutenção ou por motivos de força maior.</p>
-
-                <h3>5. Atendimento via WhatsApp</h3>
-                <p>Ao clicar nos botões de atendimento, você será redirecionado ao WhatsApp, plataforma de terceiros, ficando sujeito também aos termos de uso da mesma.</p>
-
-                <h3>6. Limitação de Responsabilidade</h3>
-                <p>Não nos responsabilizamos por falhas de conectividade do usuário, informações incorretas fornecidas pelo próprio usuário ou por danos decorrentes do uso inadequado do portal.</p>
-
-                <h3>7. Alterações dos Termos</h3>
-                <p>Estes termos podem ser alterados a qualquer momento. O uso continuado do portal após as alterações constitui aceitação dos novos termos.</p>
-            `
-        };
-
-        function openModal(type) {
-            const overlay = document.getElementById('modalOverlay');
-            const content = document.getElementById('modalContent');
-            content.innerHTML = modalContent[type];
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(event) {
-            if (!event || event.target.id === 'modalOverlay') {
-                document.getElementById('modalOverlay').classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-
-        /* ===== ÂNCORAS SEMPRE NA MESMA GUIA ===== */
+        // Smooth anchor links
         document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.setAttribute('target', '_self');
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const id = this.getAttribute('href');
                 if (id.length > 1) {
                     const target = document.querySelector(id);
                     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             });
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
         });
     </script>
 </body>
