@@ -3,866 +3,1434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORBAT Baterias — Venda e Instalação de Baterias em Mogi Guaçu/SP</title>
-    <meta name="description" content="FORBAT Baterias LTDA — Venda, teste e instalação de baterias automotivas em Mogi Guaçu/SP. Atendimento rápido e qualidade garantida.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>PH Serviços Comerciais Ltda. | Soluções Empresariais</title>
+
+    <meta name="description"
+        content="PH Serviços Comerciais Ltda. - soluções em apoio administrativo e serviços especializados para empresas. São Paulo - SP.">
+
+    <meta name="robots" content="index, follow">
+
     <style>
         :root {
-            --primary: #b71c1c;
-            --primary-light: #e53935;
-            --primary-dark: #7f0000;
-            --accent: #ffc107;
-            --accent-dark: #ff8f00;
-            --text: #1a1a2e;
-            --text-light: #4a4a5a;
-            --text-muted: #7a7a8a;
-            --bg: #ffffff;
-            --bg-light: #f8fafc;
-            --border: #e2e8f0;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            --radius: 16px;
-            --radius-sm: 8px;
+            --primary: #153b6b;
+            --primary-dark: #0c284b;
+            --secondary: #1e73be;
+            --accent: #36a9e1;
+            --light: #f5f8fc;
+            --dark: #17202a;
+            --gray: #667085;
+            --white: #ffffff;
+            --border: #e4e7ec;
+            --shadow: 0 12px 35px rgba(16, 24, 40, .08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            background: var(--bg);
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+            background: var(--white);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-60px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); }
-            50% { box-shadow: 0 0 0 12px transparent; }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .animate { opacity: 0; }
-        .animate.visible {
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        .animate-left.visible { animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-
-        /* ===== TOP BAR ===== */
-        .top-bar {
-            background: linear-gradient(90deg, #111111 0%, #1e1e1e 100%);
-            color: #fff;
-            padding: 12px 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            font-size: 0.9rem;
-            position: relative;
-            z-index: 1001;
-            flex-wrap: wrap;
-        }
-        .top-bar span { font-weight: 500; letter-spacing: 0.5px; }
-        .top-bar .btn-outline {
-            background: transparent;
-            border: 1.5px solid rgba(255,255,255,0.4);
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        a {
+            color: inherit;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .top-bar .btn-outline:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-1px);
         }
 
-        /* ===== NAVBAR ===== */
-        .navbar {
+        .container {
+            width: min(1140px, 92%);
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+
+        header {
             position: sticky;
             top: 0;
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(226,232,240,0.6);
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             z-index: 1000;
-            transition: all 0.3s ease;
+            background: rgba(255,255,255,.97);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
         }
-        .navbar.scrolled {
-            box-shadow: var(--shadow);
-            padding: 12px 40px;
+
+        .nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
         }
+
         .logo {
-            font-size: 1.3rem;
+            font-size: 22px;
             font-weight: 800;
             color: var(--primary);
+            letter-spacing: -.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav {
             display: flex;
+            gap: 25px;
             align-items: center;
-            gap: 10px;
-            text-decoration: none;
         }
-        .logo i { color: var(--accent-dark); font-size: 1.1rem; }
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
+
+        nav a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #344054;
+            transition: .25s;
         }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            position: relative;
+
+        nav a:hover {
+            color: var(--secondary);
         }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
+
+        .nav-button {
             background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover { color: var(--primary); }
-        .nav-links a:hover::after { width: 100%; }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            color: var(--text);
-            cursor: pointer;
+            color: white !important;
+            padding: 11px 18px;
+            border-radius: 7px;
         }
 
-        /* ===== HERO ===== */
+        .nav-button:hover {
+            background: var(--secondary);
+        }
+
+        /* HERO */
+
         .hero {
-            position: relative;
-            min-height: 85vh;
+            min-height: 650px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 24px;
+            background:
+                radial-gradient(circle at 80% 30%, rgba(54,169,225,.22), transparent 35%),
+                linear-gradient(135deg, #071b32, #153b6b 60%, #1e73be);
+            color: white;
             overflow: hidden;
-            background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 30%, #7f0000 70%, #111111 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 120px;
-            background: linear-gradient(to top, var(--bg), transparent);
-        }
+
         .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
+            max-width: 750px;
         }
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 50px;
-            color: #fff;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 28px;
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        .hero-badge i { color: var(--accent); }
-        .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            font-weight: 800;
-            color: #fff;
-            line-height: 1.15;
-            margin-bottom: 24px;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
-            animation: fadeInUp 0.6s 0.1s ease forwards;
-            opacity: 0;
-        }
-        .hero h1 span {
-            background: linear-gradient(135deg, #ffc107, #ff8f00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: rgba(255,255,255,0.85);
-            max-width: 600px;
-            margin: 0 auto 36px;
-            line-height: 1.7;
-            animation: fadeInUp 0.6s 0.2s ease forwards;
-            opacity: 0;
-        }
-        .hero .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: #111;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(255,193,7,0.4), 0 0 0 0 rgba(255,193,7,0.3);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.6s 0.3s ease forwards, pulse 2s infinite;
-            opacity: 0;
-        }
-        .hero .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 30px rgba(255,193,7,0.5);
-        }
-        .hero .btn-primary i { font-size: 1.1rem; }
 
-        /* Floating elements */
-        .float-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            animation: float 6s ease-in-out infinite;
-        }
-        .orb-1 { width: 300px; height: 300px; background: #ffc107; top: 10%; left: 10%; animation-delay: 0s; }
-        .orb-2 { width: 250px; height: 250px; background: #e53935; bottom: 20%; right: 10%; animation-delay: 2s; }
-        .orb-3 { width: 200px; height: 200px; background: #ff8f00; top: 40%; right: 30%; animation-delay: 4s; }
-
-        /* ===== SECTIONS COMMON ===== */
-        section { padding: 100px 24px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-header {
-            text-align: center;
-            max-width: 640px;
-            margin: 0 auto 60px;
-        }
-        .section-header h2 {
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-        .section-label {
+        .tag {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            color: #fff;
-            padding: 6px 16px;
+            padding: 7px 13px;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(255,255,255,.08);
             border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
+            font-size: 13px;
+            margin-bottom: 22px;
         }
 
-        /* ===== SERVICES ===== */
-        .services { background: var(--bg-light); }
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 1.03;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #72cef6;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #dcecff;
+            max-width: 680px;
+            margin-bottom: 34px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 23px;
+            border-radius: 7px;
+            font-weight: 700;
+            transition: .25s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.18);
+        }
+
+        .btn-outline {
+            color: white;
+            border: 1px solid rgba(255,255,255,.55);
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            line-height: 1.15;
+            margin-bottom: 13px;
+            color: var(--dark);
+        }
+
+        .section-title p {
+            max-width: 680px;
+            margin: auto;
+            color: var(--gray);
+        }
+
+        /* SOBRE */
+
+        .about {
+            background: var(--light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 35px;
+            box-shadow: var(--shadow);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 17px;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: #475467;
+            margin-bottom: 15px;
+        }
+
+        /* DADOS */
+
+        .data-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .data-item {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .data-item strong {
+            display: block;
+            font-size: 13px;
+            color: #475467;
+            margin-bottom: 3px;
+        }
+
+        .data-item span {
+            font-size: 15px;
+            color: var(--dark);
+        }
+
+        .status {
+            color: #087443 !important;
+            font-weight: 700;
+        }
+
+        /* SERVIÇOS */
+
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
         }
-        .service-card {
-            background: var(--bg);
-            border-radius: var(--radius);
-            padding: 40px 32px;
+
+        .service {
+            padding: 30px;
             border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-light), var(--accent));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: transparent;
-        }
-        .service-card:hover::before { transform: scaleX(1); }
-        .service-icon {
-            width: 56px;
-            height: 56px;
             border-radius: 14px;
+            transition: .3s;
+            background: white;
+        }
+
+        .service:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: #b8d9f2;
+        }
+
+        .service-icon {
+            width: 54px;
+            height: 54px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-            color: #fff;
-            margin-bottom: 24px;
-            transition: transform 0.3s ease;
-        }
-        .service-card:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
-        .icon-venda { background: linear-gradient(135deg, #e53935, #b71c1c); }
-        .icon-teste { background: linear-gradient(135deg, #ffc107, #ff8f00); }
-        .icon-instala { background: linear-gradient(135deg, #37474f, #111111); }
-        .service-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-        .service-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        .service-card ul {
-            list-style: none;
-            margin-bottom: 28px;
-        }
-        .service-card ul li {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            padding: 6px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        .service-card ul li i {
-            color: var(--accent-dark);
-            font-size: 0.8rem;
-            margin-top: 4px;
-            flex-shrink: 0;
-        }
-        .service-card .btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 14px;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-red {
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(183,28,28,0.3);
-        }
-        .btn-red:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(183,28,28,0.4);
-        }
-        .btn-yellow {
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: #111;
-            box-shadow: 0 4px 15px rgba(255,143,0,0.3);
-        }
-        .btn-yellow:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255,143,0,0.4);
-        }
-        .btn-dark {
-            background: linear-gradient(135deg, #455a64, #111111);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .btn-dark:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        }
-
-        /* ===== ADVANTAGES ===== */
-        .advantages { background: var(--bg); }
-        .advantages-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        .advantages-img {
-            position: relative;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-        }
-        .advantages-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s ease;
-        }
-        .advantages-img:hover img { transform: scale(1.05); }
-        .advantages-list { display: flex; flex-direction: column; gap: 28px; }
-        .advantage-item {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            padding: 20px;
-            border-radius: var(--radius-sm);
-            transition: all 0.3s ease;
-        }
-        .advantage-item:hover {
-            background: var(--bg-light);
-            transform: translateX(8px);
-        }
-        .advantage-icon {
-            width: 48px;
-            height: 48px;
-            min-width: 48px;
+            background: #eaf5fd;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 12px rgba(183,28,28,0.2);
-        }
-        .advantage-item h4 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: var(--text);
-        }
-        .advantage-item p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            line-height: 1.5;
-        }
-        .advantages-cta {
-            margin-top: 32px;
-        }
-        .advantages-cta .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            color: #fff;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(183,28,28,0.3);
-            transition: all 0.3s ease;
-        }
-        .advantages-cta .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(183,28,28,0.4);
+            font-size: 25px;
+            margin-bottom: 20px;
         }
 
-        /* ===== CONTACT ===== */
-        .contact { background: var(--bg-light); }
+        .service h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .service p {
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        /* DIFERENCIAIS */
+
+        .dark-section {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .dark-section .section-title h2 {
+            color: white;
+        }
+
+        .dark-section .section-title p {
+            color: #b8c9dc;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-number {
+            color: #55bdf0;
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #b8c9dc;
+            font-size: 14px;
+        }
+
+        /* ATIVIDADES */
+
+        .activities {
+            background: var(--light);
+        }
+
+        .activity-list {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .activity {
+            background: white;
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--secondary);
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 14px;
+        }
+
+        .activity strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .activity span {
+            color: var(--gray);
+        }
+
+        /* CONTATO */
+
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 28px;
-        }
-        .contact-card {
-            background: var(--bg);
-            border-radius: var(--radius);
-            padding: 36px 28px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .contact-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: transparent;
-        }
-        .contact-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 16px;
-        }
-        .contact-card h4 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-        .contact-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
         }
 
-        /* ===== FOOTER ===== */
-        .footer {
-            background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-            color: #fff;
-            padding: 60px 24px 30px;
+        .contact-card {
+            padding: 35px;
+            border-radius: 14px;
+            background: var(--light);
+            border: 1px solid var(--border);
         }
-        .footer-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 24px;
         }
-        .footer-brand h3 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #fff;
+
+        .address {
+            color: #475467;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* MAPA */
+
+        .map {
+            width: 100%;
+            height: 330px;
+            border: 0;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        /* LEGAL */
+
+        .legal {
+            background: white;
+        }
+
+        .legal-content {
+            max-width: 920px;
+            margin: auto;
+        }
+
+        .legal-content h2 {
+            color: var(--primary);
+            margin-top: 38px;
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 26px;
         }
-        .footer-brand h3 i { color: var(--accent); }
-        .footer-brand p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-            line-height: 1.7;
+
+        .legal-content h3 {
+            margin-top: 27px;
+            margin-bottom: 8px;
+            color: var(--dark);
         }
-        .footer-info h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        .legal-content p {
+            color: #475467;
+            margin-bottom: 13px;
         }
-        .footer-info ul {
+
+        .legal-content ul {
+            margin: 10px 0 20px 25px;
+            color: #475467;
+        }
+
+        .legal-content li {
+            margin-bottom: 7px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #081827;
+            color: white;
+            padding: 60px 0 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 45px;
+            margin-bottom: 45px;
+        }
+
+        footer h3 {
+            margin-bottom: 17px;
+        }
+
+        footer p,
+        footer li {
+            color: #aebdcb;
+            font-size: 14px;
+        }
+
+        footer ul {
             list-style: none;
         }
-        .footer-info li {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
-            padding: 6px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            line-height: 1.6;
-        }
-        .footer-info li i {
-            color: var(--accent);
-            margin-top: 4px;
-            font-size: 0.85rem;
-            flex-shrink: 0;
-        }
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding-top: 24px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.4);
-        }
-        .footer-bottom strong { color: rgba(255,255,255,0.6); }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .top-bar { padding: 10px 16px; font-size: 0.8rem; gap: 12px; }
-            .navbar { padding: 12px 20px; }
-            .nav-links { display: none; }
-            .mobile-toggle { display: block; }
-            section { padding: 60px 20px; }
-            .advantages-inner { grid-template-columns: 1fr; gap: 40px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; gap: 32px; }
-            .hero { min-height: 70vh; padding: 60px 20px; }
+        footer li {
+            margin-bottom: 8px;
+        }
+
+        footer a:hover {
+            color: #55bdf0;
+        }
+
+        .footer-company {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .copyright {
+            padding-top: 22px;
+            border-top: 1px solid rgba(255,255,255,.12);
+            text-align: center;
+            color: #7f91a3;
+            font-size: 13px;
+        }
+
+        /* BOTÃO VOLTAR */
+
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary);
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.2);
+        }
+
+        /* RESPONSIVO */
+
+        @media (max-width: 900px) {
+
+            .nav {
+                flex-direction: column;
+                padding: 18px 0;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 65px 0;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .services-grid,
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .card,
+            .contact-card {
+                padding: 25px;
+            }
         }
     </style>
-<base target="_blank">
 </head>
+
 <body>
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <span><i class="fas fa-bolt"></i> BATERIA COM PROBLEMA? FALE AGORA COM A GENTE!</span>
-        <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20com%20a%20FORBAT%20Baterias." class="btn-outline"><i class="fab fa-whatsapp"></i> FALAR NO WHATSAPP</a>
+<!-- =========================
+     CABEÇALHO
+========================= -->
+
+<header>
+    <div class="container nav">
+
+        <a href="#inicio" class="logo">
+            PH <span>Serviços Comerciais</span>
+        </a>
+
+        <nav>
+            <a href="#empresa">Empresa</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#atividades">Atividades</a>
+            <a href="#contato">Contato</a>
+            <a href="#privacidade">Privacidade</a>
+            <a href="#termos">Termos</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="inicio">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="tag">
+                Soluções para empresas
+            </div>
+
+            <h1>
+                Serviços comerciais e
+                <span>soluções empresariais.</span>
+            </h1>
+
+            <p>
+                A PH Serviços Comerciais Ltda. oferece soluções de apoio
+                administrativo e serviços especializados para empresas,
+                com atuação em São Paulo - SP.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#contato" class="btn btn-primary">
+                    Conheça a empresa
+                </a>
+
+                <a href="#servicos" class="btn btn-outline">
+                    Nossos serviços
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <a href="#inicio" class="logo">
-            <i class="fas fa-car-battery"></i>
-            FORBAT BATERIAS
-        </a>
-        <ul class="nav-links">
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#vantagens">Vantagens</a></li>
-            <li><a href="#contato">Contato</a></li>
+</section>
+
+
+<!-- =========================
+     EMPRESA
+========================= -->
+
+<section class="about" id="empresa">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Sobre a PH Serviços Comerciais</h2>
+
+            <p>
+                Informações institucionais e cadastrais da empresa.
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="card">
+
+                <h3>Quem somos</h3>
+
+                <p>
+                    A PH Serviços Comerciais Ltda. é uma empresa
+                    estabelecida em São Paulo, dedicada à prestação
+                    de serviços de apoio administrativo e soluções
+                    voltadas principalmente ao atendimento de empresas.
+                </p>
+
+                <p>
+                    Nossa atuação está relacionada a serviços
+                    especializados de suporte às atividades empresariais,
+                    contribuindo para processos administrativos,
+                    organização documental e outras necessidades
+                    operacionais.
+                </p>
+
+                <p>
+                    Buscamos oferecer atendimento profissional,
+                    organização e soluções adequadas às necessidades
+                    de cada cliente.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Dados da empresa</h3>
+
+                <div class="data-grid">
+
+                    <div class="data-item">
+                        <strong>Razão Social</strong>
+                        <span>PH Serviços Comerciais Ltda.</span>
+                    </div>
+
+                    <div class="data-item">
+                        <strong>CNPJ</strong>
+                        <span>59.667.138/0001-91</span>
+                    </div>
+
+                    <div class="data-item">
+                        <strong>Natureza Jurídica</strong>
+                        <span>Sociedade Empresária Limitada</span>
+                    </div>
+
+                    <div class="data-item">
+                        <strong>Situação Cadastral</strong>
+                        <span class="status">ATIVA</span>
+                    </div>
+
+                    <div class="data-item">
+                        <strong>Data de abertura</strong>
+                        <span>26/02/2025</span>
+                    </div>
+
+                    <div class="data-item">
+                        <strong>Capital Social</strong>
+                        <span>R$ 10.000,00</span>
+                    </div>
+
+                    <div class="data-item">
+                        <strong>Regime</strong>
+                        <span>Simples Nacional</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVIÇOS
+========================= -->
+
+<section id="servicos">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Nossos serviços</h2>
+
+            <p>
+                Soluções de apoio para as necessidades administrativas
+                e operacionais das empresas.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+            <div class="service">
+
+                <div class="service-icon">📄</div>
+
+                <h3>Apoio administrativo</h3>
+
+                <p>
+                    Serviços especializados de apoio às rotinas
+                    administrativas e operacionais de empresas.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-icon">📋</div>
+
+                <h3>Preparação de documentos</h3>
+
+                <p>
+                    Apoio na preparação, organização, digitação,
+                    conferência e tratamento de documentos.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-icon">🗂️</div>
+
+                <h3>Organização documental</h3>
+
+                <p>
+                    Serviços relacionados à organização e
+                    gerenciamento de documentos empresariais.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-icon">⌨️</div>
+
+                <h3>Digitação e transcrição</h3>
+
+                <p>
+                    Serviços de digitação, transcrição e preparação
+                    de diferentes tipos de documentos.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-icon">🏢</div>
+
+                <h3>Suporte empresarial</h3>
+
+                <p>
+                    Serviços de apoio voltados principalmente
+                    às necessidades de outras empresas.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-icon">📑</div>
+
+                <h3>Serviços especializados</h3>
+
+                <p>
+                    Soluções administrativas personalizadas de acordo
+                    com a necessidade de cada operação.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DIFERENCIAIS
+========================= -->
+
+<section class="dark-section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Compromisso com nossos clientes</h2>
+
+            <p>
+                Uma abordagem voltada à organização, transparência
+                e qualidade na prestação dos serviços.
+            </p>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-number">01</div>
+
+                <h3>Transparência</h3>
+
+                <p>
+                    Informações claras sobre a empresa e seus serviços.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">02</div>
+
+                <h3>Organização</h3>
+
+                <p>
+                    Processos estruturados para apoiar as operações.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">03</div>
+
+                <h3>Profissionalismo</h3>
+
+                <p>
+                    Atendimento orientado às necessidades empresariais.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">04</div>
+
+                <h3>Responsabilidade</h3>
+
+                <p>
+                    Compromisso com a prestação adequada dos serviços.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ATIVIDADES
+========================= -->
+
+<section class="activities" id="atividades">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Atividades empresariais</h2>
+
+            <p>
+                Principais atividades econômicas encontradas no
+                cadastro público da empresa.
+            </p>
+
+        </div>
+
+
+        <div class="activity-list">
+
+            <div class="activity">
+
+                <strong>
+                    CNAE principal — 82.19-9-99
+                </strong>
+
+                <span>
+                    Preparação de documentos e serviços especializados
+                    de apoio administrativo não especificados anteriormente.
+                </span>
+
+            </div>
+
+
+            <div class="activity">
+
+                <strong>
+                    CNAE secundário — 82.99-7-99
+                </strong>
+
+                <span>
+                    Outras atividades de serviços prestados principalmente
+                    às empresas não especificadas anteriormente.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTATO
+========================= -->
+
+<section id="contato">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Entre em contato</h2>
+
+            <p>
+                Nossa sede está localizada em São Paulo, SP.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+            <div class="contact-card">
+
+                <h3>Endereço</h3>
+
+                <div class="address">
+
+                    <strong>PH Serviços Comerciais Ltda.</strong><br>
+
+                    Rua Oscar Freire, 281<br>
+                    Sala 2<br>
+                    Cerqueira Cesar<br>
+                    São Paulo - SP<br>
+                    CEP 01426-001<br>
+                    Brasil
+
+                </div>
+
+                <br>
+
+                <a
+                    class="btn"
+                    style="background:#153b6b;color:white;"
+                    target="_blank"
+                    href="https://www.google.com/maps/search/?api=1&query=Rua+Oscar+Freire%2C+281%2C+São+Paulo%2C+SP%2C+01426-001"
+                >
+                    Ver localização
+                </a>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <h3>Informações institucionais</h3>
+
+                <div class="address">
+
+                    <strong>Razão Social:</strong>
+                    PH Serviços Comerciais Ltda.<br><br>
+
+                    <strong>CNPJ:</strong>
+                    59.667.138/0001-91<br><br>
+
+                    <strong>Situação:</strong>
+                    Ativa<br><br>
+
+                    <strong>Município:</strong>
+                    São Paulo - SP
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     POLÍTICA DE PRIVACIDADE
+========================= -->
+
+<section class="legal" id="privacidade">
+
+    <div class="container legal-content">
+
+        <div class="section-title">
+
+            <h2>Política de Privacidade</h2>
+
+            <p>
+                Última atualização: setembro de 2026
+            </p>
+
+        </div>
+
+
+        <h2>1. Compromisso com a privacidade</h2>
+
+        <p>
+            A PH Serviços Comerciais Ltda. respeita a privacidade
+            dos usuários e busca tratar dados pessoais de forma
+            transparente, segura e de acordo com a legislação aplicável.
+        </p>
+
+
+        <h2>2. Dados pessoais</h2>
+
+        <p>
+            Dependendo da forma de utilização deste site, poderão ser
+            tratados dados fornecidos voluntariamente pelo usuário,
+            como nome, telefone, endereço de e-mail e informações
+            necessárias para atendimento de solicitações.
+        </p>
+
+
+        <h2>3. Finalidade do tratamento</h2>
+
+        <p>
+            Os dados pessoais poderão ser utilizados para:
+        </p>
+
+        <ul>
+            <li>Responder solicitações e mensagens;</li>
+            <li>Prestar atendimento aos usuários;</li>
+            <li>Fornecer informações sobre serviços;</li>
+            <li>Elaborar propostas ou orçamentos quando solicitado;</li>
+            <li>Cumprir obrigações legais e regulatórias;</li>
+            <li>Proteger os direitos da empresa e dos usuários.</li>
         </ul>
-        <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
 
-    <!-- HERO -->
-    <section class="hero" id="inicio">
-        <div class="float-orb orb-1"></div>
-        <div class="float-orb orb-2"></div>
-        <div class="float-orb orb-3"></div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-circle-check"></i>
-                Atendimento em Mogi Guaçu/SP
-            </div>
-            <h1>Baterias de <span>Qualidade</span> para o seu Veículo!</h1>
-            <p>Venda, teste e instalação de baterias automotivas com garantia e preço justo. Na FORBAT Baterias você encontra as melhores marcas e um atendimento que entende do assunto.</p>
-            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20FORBAT%20Baterias%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." class="btn-primary">
-                <i class="fab fa-whatsapp"></i>
-                SOLICITAR ORÇAMENTO
-            </a>
+
+        <h2>4. Compartilhamento de dados</h2>
+
+        <p>
+            A PH Serviços Comerciais Ltda. não comercializa dados
+            pessoais. O compartilhamento poderá ocorrer quando necessário
+            para cumprimento de obrigação legal, exercício regular de
+            direitos, execução de serviços solicitados pelo titular ou
+            utilização de fornecedores necessários ao funcionamento
+            das atividades da empresa.
+        </p>
+
+
+        <h2>5. Cookies</h2>
+
+        <p>
+            Este site poderá utilizar cookies ou tecnologias semelhantes
+            para funcionamento, segurança, análise de navegação e melhoria
+            da experiência do usuário.
+        </p>
+
+
+        <h2>6. Segurança</h2>
+
+        <p>
+            A empresa adota medidas técnicas e administrativas razoáveis
+            para proteger os dados pessoais contra acessos não autorizados,
+            perda, alteração, divulgação ou destruição indevida.
+        </p>
+
+
+        <h2>7. Direitos do titular</h2>
+
+        <p>
+            Nos termos da legislação aplicável, especialmente da Lei
+            nº 13.709/2018 (Lei Geral de Proteção de Dados Pessoais -
+            LGPD), o titular poderá exercer os direitos previstos em lei,
+            observadas as hipóteses e limitações legais.
+        </p>
+
+
+        <h2>8. Retenção dos dados</h2>
+
+        <p>
+            Os dados poderão ser mantidos pelo período necessário para
+            cumprir as finalidades para as quais foram coletados, cumprir
+            obrigações legais e preservar direitos da empresa.
+        </p>
+
+
+        <h2>9. Alterações desta política</h2>
+
+        <p>
+            Esta Política de Privacidade poderá ser atualizada
+            periodicamente para refletir mudanças nos serviços,
+            procedimentos ou na legislação aplicável.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TERMOS DE USO
+========================= -->
+
+<section class="legal" id="termos">
+
+    <div class="container legal-content">
+
+        <div class="section-title">
+
+            <h2>Termos de Uso</h2>
+
+            <p>
+                Condições para utilização deste site.
+            </p>
+
         </div>
-    </section>
 
-    <!-- SERVICES -->
-    <section class="services" id="servicos">
-        <div class="container">
-            <div class="section-header animate">
-                <span class="section-label">Nossos Serviços</span>
-                <h2>Tudo para sua bateria em um só lugar</h2>
-                <p>Escolha o serviço que você precisa e resolva de forma rápida e segura.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card animate delay-1">
-                    <div class="service-icon icon-venda"><i class="fas fa-car-battery"></i></div>
-                    <h3>Venda de Baterias</h3>
-                    <p>Baterias novas das melhores marcas para carros, motos, utilitários e caminhões.</p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Marcas confiáveis e garantia</li>
-                        <li><i class="fas fa-check-circle"></i> Preço justo e transparente</li>
-                        <li><i class="fas fa-check-circle"></i> Bateria na medida do seu veículo</li>
-                    </ul>
-                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Gostaria%20de%20comprar%20uma%20bateria%20nova." class="btn btn-red">CONSULTAR PREÇO</a>
-                </div>
-                <div class="service-card animate delay-2">
-                    <div class="service-icon icon-teste"><i class="fas fa-gauge-high"></i></div>
-                    <h3>Teste e Diagnóstico</h3>
-                    <p>Teste gratuito da bateria e do sistema de carga para saber exatamente o que seu carro precisa.</p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Teste de bateria e alternador</li>
-                        <li><i class="fas fa-check-circle"></i> Diagnóstico honesto</li>
-                        <li><i class="fas fa-check-circle"></i> Só troca se for necessário</li>
-                    </ul>
-                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20um%20teste%20de%20bateria." class="btn btn-yellow">AGENDAR TESTE</a>
-                </div>
-                <div class="service-card animate delay-3">
-                    <div class="service-icon icon-instala"><i class="fas fa-screwdriver-wrench"></i></div>
-                    <h3>Troca e Instalação</h3>
-                    <p>Troca rápida com instalação feita por profissionais, sem complicação e sem sujeira.</p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Instalação profissional</li>
-                        <li><i class="fas fa-check-circle"></i> Atendimento ágil</li>
-                        <li><i class="fas fa-check-circle"></i> Descarte correto da bateria usada</li>
-                    </ul>
-                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Preciso%20trocar%20a%20bateria%20do%20meu%20ve%C3%ADculo." class="btn btn-dark">TROCAR AGORA</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ADVANTAGES -->
-    <section class="advantages" id="vantagens">
-        <div class="container">
-            <div class="advantages-inner">
-                <div class="advantages-img animate-left">
-                    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=700&fit=crop" alt="Mecânico trocando bateria de carro">
-                </div>
-                <div class="advantages-content">
-                    <div class="section-header animate" style="text-align:left; margin:0 0 40px 0;">
-                        <span class="section-label">Diferenciais</span>
-                        <h2>Por que escolher a FORBAT?</h2>
-                        <p>Qualidade e confiança para você não ficar na mão.</p>
-                    </div>
-                    <div class="advantages-list">
-                        <div class="advantage-item animate delay-1">
-                            <div class="advantage-icon"><i class="fas fa-certificate"></i></div>
-                            <div>
-                                <h4>Produtos com Garantia</h4>
-                                <p>Trabalhamos apenas com baterias de fabricantes reconhecidos, com garantia real de fábrica.</p>
-                            </div>
-                        </div>
-                        <div class="advantage-item animate delay-2">
-                            <div class="advantage-icon"><i class="fas fa-hand-holding-dollar"></i></div>
-                            <div>
-                                <h4>Preço Justo</h4>
-                                <p>Orçamento transparente, sem taxas escondidas e com as melhores condições da região.</p>
-                            </div>
-                        </div>
-                        <div class="advantage-item animate delay-3">
-                            <div class="advantage-icon"><i class="fas fa-people-arrows"></i></div>
-                            <div>
-                                <h4>Atendimento Especializado</h4>
-                                <p>Equipe que entende de baterias e orienta você para fazer a escolha certa para o seu veículo.</p>
-                            </div>
-                        </div>
-                        <div class="advantage-item animate delay-4">
-                            <div class="advantage-icon"><i class="fas fa-recycle"></i></div>
-                            <div>
-                                <h4>Descarte Responsável</h4>
-                                <p>Realizamos o descarte ambientalmente correto das baterias usadas, conforme a legislação.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="advantages-cta animate delay-5">
-                        <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20FORBAT%20Baterias%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." class="btn-primary"><i class="fab fa-whatsapp"></i> FAZER ORÇAMENTO</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <h2>1. Aceitação</h2>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contato">
-        <div class="container">
-            <div class="section-header animate">
-                <span class="section-label">Contato</span>
-                <h2>Fale com a gente</h2>
-                <p>Estamos prontos para atender você. Escolha o canal de sua preferência.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-card animate delay-1">
-                    <i class="fas fa-location-dot"></i>
-                    <h4>Endereço</h4>
-                    <p>Av. Mal. Castelo Branco, 174<br>Loteamento Morro de Ouro<br>Mogi Guaçu/SP — 13840-060</p>
-                </div>
-                <div class="contact-card animate delay-2">
-                    <i class="fab fa-whatsapp"></i>
-                    <h4>WhatsApp</h4>
-                    <p>Atendimento rápido pelo WhatsApp.<br>Toque no botão e fale conosco agora mesmo.</p>
-                </div>
-                <div class="contact-card animate delay-3">
-                    <i class="fas fa-clock"></i>
-                    <h4>Horário de Atendimento</h4>
-                    <p>Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 12h</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <p>
+            Ao acessar e utilizar este site, o usuário declara estar
+            ciente destes Termos de Uso. Caso não concorde com as
+            condições aqui estabelecidas, recomenda-se interromper
+            a utilização do site.
+        </p>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3><i class="fas fa-car-battery"></i> FORBAT BATERIAS</h3>
-                <p>Venda, teste e instalação de baterias automotivas em Mogi Guaçu/SP. Qualidade garantida, preço justo e atendimento especializado para você não ficar na mão.</p>
+
+        <h2>2. Objetivo do site</h2>
+
+        <p>
+            O site possui finalidade institucional e informativa,
+            apresentando informações sobre a PH Serviços Comerciais
+            Ltda., suas atividades e formas de contato.
+        </p>
+
+
+        <h2>3. Informações</h2>
+
+        <p>
+            A empresa busca manter as informações disponibilizadas
+            atualizadas. Entretanto, determinados conteúdos podem ser
+            modificados, atualizados ou removidos sem aviso prévio.
+        </p>
+
+
+        <h2>4. Propriedade intelectual</h2>
+
+        <p>
+            Textos, elementos gráficos, identidade visual, estrutura
+            e demais conteúdos disponibilizados no site poderão estar
+            protegidos pela legislação de propriedade intelectual.
+        </p>
+
+
+        <h2>5. Uso permitido</h2>
+
+        <p>
+            O usuário compromete-se a utilizar o site exclusivamente
+            para finalidades lícitas e legítimas, não podendo praticar
+            atos que comprometam sua segurança, funcionamento ou
+            disponibilidade.
+        </p>
+
+
+        <h2>6. Links externos</h2>
+
+        <p>
+            O site poderá eventualmente apresentar links para páginas
+            ou serviços de terceiros. A PH Serviços Comerciais Ltda.
+            não controla necessariamente esses ambientes externos e
+            recomenda que o usuário consulte os respectivos termos
+            e políticas.
+        </p>
+
+
+        <h2>7. Limitação de responsabilidade</h2>
+
+        <p>
+            A empresa emprega esforços razoáveis para manter o site
+            disponível e as informações adequadas, mas não garante que
+            o serviço estará permanentemente livre de interrupções,
+            erros ou indisponibilidades.
+        </p>
+
+
+        <h2>8. Alterações</h2>
+
+        <p>
+            Estes Termos de Uso poderão ser atualizados a qualquer
+            momento para refletir mudanças nos serviços, no site ou
+            na legislação aplicável.
+        </p>
+
+
+        <h2>9. Legislação aplicável</h2>
+
+        <p>
+            Estes Termos de Uso serão interpretados de acordo com a
+            legislação brasileira aplicável.
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     RODAPÉ
+========================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>PH Serviços Comerciais</h3>
+
+                <p class="footer-company">
+                    Soluções em apoio administrativo e serviços
+                    especializados para empresas.
+                </p>
+
             </div>
-            <div class="footer-info">
-                <h4>Dados da Empresa</h4>
+
+
+            <div>
+
+                <h3>Informações da empresa</h3>
+
                 <ul>
-                    <li><i class="fas fa-building"></i> FORBAT BATERIAS LTDA</li>
-                    <li><i class="fas fa-id-card"></i> CNPJ: 11.369.114/0001-20</li>
-                    <li><i class="fas fa-location-dot"></i> Av. Mal. Castelo Branco, 174 — Loteamento Morro de Ouro</li>
-                    <li><i class="fas fa-city"></i> Mogi Guaçu/SP — CEP 13840-060</li>
-                    <li><i class="fas fa-earth-americas"></i> Brasil</li>
+
+                    <li>
+                        Razão Social:
+                        PH Serviços Comerciais Ltda.
+                    </li>
+
+                    <li>
+                        CNPJ:
+                        59.667.138/0001-91
+                    </li>
+
+                    <li>
+                        Situação:
+                        Ativa
+                    </li>
+
+                    <li>
+                        Natureza:
+                        Sociedade Empresária Limitada
+                    </li>
+
                 </ul>
+
             </div>
+
+
+            <div>
+
+                <h3>Endereço</h3>
+
+                <p>
+                    Rua Oscar Freire, 281<br>
+                    Sala 2<br>
+                    Cerqueira Cesar<br>
+                    São Paulo - SP<br>
+                    CEP 01426-001<br>
+                    Brasil
+                </p>
+
+                <br>
+
+                <a href="#privacidade">
+                    Política de Privacidade
+                </a>
+
+                <br>
+
+                <a href="#termos">
+                    Termos de Uso
+                </a>
+
+            </div>
+
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 <strong>FORBAT BATERIAS LTDA</strong> — CNPJ: 11.369.114/0001-20. Todos os direitos reservados.</p>
+
+
+        <div class="copyright">
+
+            © 2026 PH Serviços Comerciais Ltda.
+            Todos os direitos reservados.
+
         </div>
-    </footer>
 
-    <script>
-        // Scroll animations
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+    </div>
 
-        document.querySelectorAll('.animate, .animate-left').forEach(el => observer.observe(el));
+</footer>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
 
-        // Smooth anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const id = this.getAttribute('href');
-                if (id.length > 1) {
-                    const target = document.querySelector(id);
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
+<a href="#inicio" class="back-top" aria-label="Voltar ao início">
+    ↑
+</a>
+
+
 </body>
 </html>
